@@ -1,0 +1,36 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+cymysql = "==0.9.13"
+requests = "==2.18.4"
+pipfile = "==0.0.2"
+oss2 = "==2.6.1"
+Flask = "==1.0.2"
+Flask-SQLAlchemy = "==2.3.2"
+Flask-WTF = "==0.14.2"
+Flask-Cors = "==2.1.0"
+Lin-CMS = "==0.2.0b2"
+certifi = "==2019.3.9"
+chardet = "==3.0.4"
+click = "==7.0"
+flask-jwt-extended = "==3.12.1"
+idna = "==2.6"
+itsdangerous = "==1.1.0"
+jinja2 = "==2.10"
+markupsafe = "==1.1.1"
+pyjwt = "==1.7.1"
+six = "==1.12.0"
+sqlalchemy = "==1.2.11"
+toml = "==0.10.0"
+urllib3 = "==1.22"
+werkzeug = "==0.14.1"
+wtforms = "==2.2.1"
+
+[dev-packages]
+pytest = "*"
+
+[requires]
+python_version = "3.6"
