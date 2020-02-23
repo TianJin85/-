@@ -31,7 +31,7 @@ class Love_user(Base):
 class Love_message(Base):
     __tablename__ = "love_message"
     Id = Column("id", Integer, primary_key=True, autoincrement=True, comment="信息id")
-    Uid = Column("uid", Integer, ForeignKey("love_user.Id"), comment="用户id")
+    Uid = Column("uid", Integer, ForeignKey("love_user.id"), comment="用户id")
     Phone = Column("phone", Integer, nullable=False, comment="电话号码")
     Cardid = Column("cardid", String(28), nullable=False, comment="身份证号码")
     Census = Column("census", String(62), nullable=False, comment="户籍所在地")
@@ -56,7 +56,7 @@ class Love_payment(Base):
 
     __tablename__ = 'love_payment'
     Id = Column(Integer, primary_key=True, autoincrement=True)
-    Uid = Column(Integer, ForeignKey("love_user.Id"), comment="用户id")
+    Uid = Column(Integer, ForeignKey("love_user.id"), comment="用户id")
     Status = Column(Boolean, nullable=False, comment="支付状态")
     Money = Column(Float(9), nullable=False, comment="支付金额")
     Accounts = Column(String(32), nullable=False, comment="转账单号")
