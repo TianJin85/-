@@ -10,9 +10,9 @@ from lin.exception import Success
 from lin.redprint import Redprint
 
 from app.libs.error_code import BookNotFound
-from app.models.book import Book
+# from app.models.book import Book
 from app.models.love import Love_ctivity, Love_message, Love_user, Love_payment
-from app.validators.forms import BookSearchForm, CreateOrUpdateBookForm
+from app.validators.lin_forms import BookSearchForm, CreateOrUpdateBookForm
 
 book_api = Redprint('book')
 

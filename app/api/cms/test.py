@@ -20,7 +20,7 @@ def slogan():
 
 
 @test_api.route('/info', methods=['GET'])
-@route_meta(auth='查看lin的信息', module='信息')
+@route_meta(auth='查看信息', module='信息')
 # @Logger(template='{user.nickname}浏览了信息')  # 记录日志
 @group_required
 def info():

@@ -18,7 +18,7 @@ from lin.redprint import Redprint
 
 from app.libs.error_code import RefreshException
 from app.libs.utils import json_res
-from app.validators.forms import LoginForm, RegisterForm, ChangePasswordForm, UpdateInfoForm, \
+from app.validators.lin_forms import LoginForm, RegisterForm, ChangePasswordForm, UpdateInfoForm, \
     AvatarUpdateForm
 
 user_api = Redprint('user')

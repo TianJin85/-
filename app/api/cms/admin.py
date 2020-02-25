@@ -9,9 +9,9 @@ from itertools import groupby
 from operator import itemgetter
 
 from app.libs.utils import get_page_from_query, json_res, paginate
-from app.validators.forms import (DispatchAuth, DispatchAuths, NewGroup,
-                                  RemoveAuths, ResetPasswordForm, UpdateGroup,
-                                  UpdateUserInfoForm)
+from app.validators.lin_forms import (DispatchAuth, DispatchAuths, NewGroup,
+                                      RemoveAuths, ResetPasswordForm, UpdateGroup,
+                                      UpdateUserInfoForm)
 from flask import jsonify, request
 from lin import db
 from lin.core import (find_auth_module, find_user, get_ep_infos, manager,

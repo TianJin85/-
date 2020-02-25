@@ -18,7 +18,7 @@ class Love_user(Base):
     __tablename__ = "love_user"
     Id = Column("id", Integer, primary_key=True, autoincrement=True, comment="用户id")
     Username = Column("username", String(32), comment="用户名称")
-    Openid = Column("openid", String(62), comment="用户标识")
+    Openid = Column("openid", String(62), comment="用户标识", unique=True)
     Unionid = Column("unionid", String(62), comment="接口凭证")
     Portraits = Column("portraits", String(62), comment="用户头像")
     Sex = Column("sex", String(120), comment="用户性别")

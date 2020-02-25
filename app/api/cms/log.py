@@ -5,7 +5,7 @@
 import math
 
 from app.libs.utils import get_page_from_query, json_res
-from app.validators.forms import LogFindForm
+from app.validators.lin_forms import LogFindForm
 from flask import jsonify, request
 from lin import db
 from lin.core import Log, route_meta
