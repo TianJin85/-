@@ -17,7 +17,7 @@ class Love_user(Base):
 
     __tablename__ = "love_user"
     Id = Column("id", Integer, primary_key=True, autoincrement=True, comment="用户id")
-    Username = Column("username", String(32), comment="用户名称")
+    nickname = Column("nickname", String(32), comment="用户名称")
     Openid = Column("openid", String(62), comment="用户标识", unique=True)
     Unionid = Column("unionid", String(62), comment="接口凭证")
     Portraits = Column("portraits", String(62), comment="用户头像")
@@ -31,25 +31,48 @@ class Love_user(Base):
 class Love_message(Base):
     __tablename__ = "love_message"
     Id = Column("id", Integer, primary_key=True, autoincrement=True, comment="信息id")
+    UserName = Column("username", String(15), nullable=False, comment="用户姓名")
     Uid = Column("uid", Integer, ForeignKey("love_user.id"), comment="用户id")
-    Phone = Column("phone", Integer, nullable=False, comment="电话号码")
+    Census = Column("census", String(62),  comment="户籍所在地")
     Cardid = Column("cardid", String(28), nullable=False, comment="身份证号码")
-    Census = Column("census", String(62), nullable=False, comment="户籍所在地")
-    Images = Column("images", String(62), nullable=False, comment="用户图片")
-    Hobby = Column("hobby", String(120), nullable=False, comment="兴趣爱好")
-    Stature = Column("stature", String(4), nullable=False, comment="身高")
+    Stature = Column("stature", String(4), comment="身高")
+    Weight = Column("weight", String(4),  comment="体重")
+    Phone = Column("phone", Integer, nullable=False, comment="电话号码")
+    Wechat = Column("wechat", String(30), nullable=False, Column="微信号")
+    Qq = Column("qq", Integer, nullable=False, comment="QQ号")
+    School = Column("school", String(32),  comment="毕业学校")
+    Images = Column("images", String(62), comment="用户图片")
+    Hobby = Column("hobby", String(120), comment="兴趣爱好")
+    Blood = Column("blood", String(6), comment="血型")
+    Nation = Column("nation", String(12), comment="民族")
+    Education = Column("education", String(20), comment="学历")
+    Vehicle = Column("vehicle", String(3), comment="是否有车")
+    Monthly = Column("monthly", Float, comment="月薪")
+    Workunit = Column("workunit", String(32), comment="工作单位")
+    Occupation = Column("occupation", String(32), omment="职业")
+    Profession = Column("profession", String(12),comment="职业性质")
+    Member = Column("member", String(32), comment="家庭成员")
+    Marriage = Column("marriage", String(20), comment="婚恋情况")
+    Housing = Column("housing", String(62), comment="住房情况")
+    Children = Column("children", String(10), comment="有无子女")
+    Personage = Column("presonage", String(500), comment="个人介绍")
+
+
+class Love_standatds(Base):
+
+    __tablename__ = 'love_standatds'
+    Id = Column("id", Integer, primary_key=True, autoincrement=True, comment="择偶id")
+    Marriage = Column("marriage", String(12), nullable=False, comment="婚史情况")
+    Sex = Column("sex", Integer, nullable=Float, comment="年龄")
+    Stature = Column("stature", String(4), nullable=False, comment="最低身高要求")
     Weight = Column("weight", String(4), nullable=False, comment="体重")
-    Blood = Column("blood", String(6), nullable=False, comment="血型")
-    Nation = Column("nation", String(12), nullable=False, comment="民族")
-    Standards = Column("standards", String(200), nullable=False, comment="择偶标准")
-    Education = Column("education", String(20), nullable=False, comment="学历")
-    Vehicle = Column("vehicle", String(3), nullable=False, comment="是否有车")
     Monthly = Column("monthly", Float, nullable=False, comment="月薪")
-    Profession = Column("profession", String(12), nullable=False, comment="职业性质")
-    Marriage = Column("marriage", String(20), nullable=False, comment="婚恋情况")
     Housing = Column("housing", String(62), nullable=False, comment="住房情况")
-    Personage = Column("presonage", String(500), nullable=False, comment="个人介绍")
-    Logindate = Column("logindate", Integer, nullable=False, comment="登录次数")
+    Vehicle = Column("vehicle", String(3), nullable=False, comment="是否有车")
+    Children = Column("children", String(10), nullable=False, comment="有无子女")
+    Census = Column("census", String(62), nullable=False, comment="户籍所在地")
+    Rests = Column("rests", String(500), comment="其他")
+
 
 
 class Love_payment(Base):
@@ -60,6 +83,7 @@ class Love_payment(Base):
     Status = Column(Boolean, nullable=False, comment="支付状态")
     Money = Column(Float(9), nullable=False, comment="支付金额")
     Accounts = Column(String(32), nullable=False, comment="转账单号")
+
 
 
 class Love_ctivity(Base):
