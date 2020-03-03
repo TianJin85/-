@@ -15,8 +15,11 @@ from flask_debugtoolbar import DebugToolbarExtension
 def register_blueprints(app):
     from app.api.v1 import create_v1
     from app.api.cms import create_cms
+    from app.api.view import create_view
     app.register_blueprint(create_v1(), url_prefix='/v1')
     app.register_blueprint(create_cms(), url_prefix='/cms')
+    app.register_blueprint(create_view(), url_prefix='/view')
+
 
 
 def apply_cors(app):
@@ -65,7 +68,7 @@ def register_after_request(app):
 
 
 def create_app(register_all=True, environment='production'):
-    app = LinFlask(__name__, static_folder='./assets')
+    app = LinFlask(__name__, static_folder='./static')
     app.config['ENV'] = environment
     env = app.config.get('ENV')
     if env == 'production':

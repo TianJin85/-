@@ -38,7 +38,7 @@ class Love_message(Base):
     Stature = Column("stature", String(4), comment="身高")
     Weight = Column("weight", String(4),  comment="体重")
     Phone = Column("phone", Integer, nullable=False, comment="电话号码")
-    Wechat = Column("wechat", String(30), nullable=False, Column="微信号")
+    Wechat = Column("wechat", String(30), nullable=False, comment="微信号")
     Qq = Column("qq", Integer, nullable=False, comment="QQ号")
     School = Column("school", String(32),  comment="毕业学校")
     Images = Column("images", String(62), comment="用户图片")
@@ -49,7 +49,7 @@ class Love_message(Base):
     Vehicle = Column("vehicle", String(3), comment="是否有车")
     Monthly = Column("monthly", Float, comment="月薪")
     Workunit = Column("workunit", String(32), comment="工作单位")
-    Occupation = Column("occupation", String(32), omment="职业")
+    Occupation = Column("occupation", String(32), comment="职业")
     Profession = Column("profession", String(12),comment="职业性质")
     Member = Column("member", String(32), comment="家庭成员")
     Marriage = Column("marriage", String(20), comment="婚恋情况")
@@ -63,7 +63,7 @@ class Love_standatds(Base):
     __tablename__ = 'love_standatds'
     Id = Column("id", Integer, primary_key=True, autoincrement=True, comment="择偶id")
     Marriage = Column("marriage", String(12), nullable=False, comment="婚史情况")
-    Sex = Column("sex", Integer, nullable=Float, comment="年龄")
+    Sex = Column("sex", Integer, nullable=False, comment="年龄")
     Stature = Column("stature", String(4), nullable=False, comment="最低身高要求")
     Weight = Column("weight", String(4), nullable=False, comment="体重")
     Monthly = Column("monthly", Float, nullable=False, comment="月薪")
@@ -81,7 +81,7 @@ class Love_payment(Base):
     Id = Column(Integer, primary_key=True, autoincrement=True)
     Uid = Column(Integer, ForeignKey("love_user.id"), comment="用户id")
     Status = Column(Boolean, nullable=False, comment="支付状态")
-    Money = Column(Float(9), nullable=False, comment="支付金额")
+    Money = Column(Float, nullable=False, comment="支付金额")
     Accounts = Column(String(32), nullable=False, comment="转账单号")
 
 
@@ -92,8 +92,10 @@ class Love_ctivity(Base):
     Id = Column(Integer, primary_key=True, autoincrement=True)
     Name = Column(String(62), nullable=False, comment="活动名称")
     Adderss = Column(String(32), nullable=False, comment="活动地址")
-    Testarea = Column(String(5000), nullable=False, comment="活动简介")
+    Testarea = Column(String(20000), nullable=False, comment="活动简介")
     Date = Column(DateTime, nullable=False, comment="活动时间")
-    Num = Column(Integer, nullable=True, comment="报名次数")
-
+    Activity_cost = Column(Float, comment="活动费用")
+    Rule = Column(String(500), comment="活动规则")
+    message = Column(String(200), comment="其他信息")
+    Num = Column(Integer, comment="报名次数")
 
