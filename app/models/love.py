@@ -17,6 +17,7 @@ class Love_user(Base):
 
     __tablename__ = "love_user"
     Id = Column("id", Integer, primary_key=True, autoincrement=True, comment="用户id")
+    Ctivity_id = Column("ctivity_id", String(120), comment="参与活动id")
     nickname = Column("nickname", String(32), comment="用户名称")
     Openid = Column("openid", String(62), comment="用户标识", unique=True)
     Unionid = Column("unionid", String(62), comment="接口凭证")
@@ -26,6 +27,8 @@ class Love_user(Base):
     Language = Column("language", String(15), comment="语言")
     Subscribe_tiem = Column("subscribe", DateTime, default=datetime.now, comment="关注时间")
     Province = Column("province", String(20), comment="所在的省份")
+    Collect = Column('collect', String(120), comment="收藏")
+    Vip = Column('vip', String(2), comment="是否是VIP")
 
 
 class Love_message(Base):
@@ -74,7 +77,6 @@ class Love_standatds(Base):
     Rests = Column("rests", String(500), comment="其他")
 
 
-
 class Love_payment(Base):
 
     __tablename__ = 'love_payment'
@@ -85,17 +87,24 @@ class Love_payment(Base):
     Accounts = Column(String(32), nullable=False, comment="转账单号")
 
 
+class Love_record(Base):
+    __tablename__ = 'love_record'
+    Id = Column("id", Integer, primary_key=True, autoincrement=True)
+    Pid = Column("uid", Integer, ForeignKey("Love_payment.id"), comment="支付金额")
+    Money = Column("money", Float, comment="消費金額")
+    Balance = Column("balance", Float, comment="余额")
+    Money_Sum = Column("money_sum", Float, comment="充值金额")
 
 class Love_ctivity(Base):
 
     __tabelname__ = 'love_ctivity'
-    Id = Column(Integer, primary_key=True, autoincrement=True)
-    Name = Column(String(62), nullable=False, comment="活动名称")
-    Adderss = Column(String(32), nullable=False, comment="活动地址")
-    Testarea = Column(String(20000), nullable=False, comment="活动简介")
-    Date = Column(DateTime, nullable=False, comment="活动时间")
-    Activity_cost = Column(Float, comment="活动费用")
-    Rule = Column(String(500), comment="活动规则")
-    message = Column(String(200), comment="其他信息")
-    Num = Column(Integer, comment="报名次数")
+    Id = Column("id", Integer, primary_key=True, autoincrement=True)
+    Name = Column("name", String(62), nullable=False, comment="活动名称")
+    Adderss = Column("adderss", String(32), nullable=False, comment="活动地址")
+    Testarea = Column("testarea", String(20000), nullable=False, comment="活动简介")
+    Date = Column("date", DateTime, nullable=False, comment="活动时间")
+    Activity_cost = Column("activity_cost", Float, comment="活动费用")
+    Rule = Column("rule", String(500), comment="活动规则")
+    message = Column("message", String(200), comment="其他信息")
+    Num = Column("num", Integer, comment="报名次数")
 
