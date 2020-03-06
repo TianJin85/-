@@ -11,14 +11,15 @@ from redis import Redis, exceptions
 
 class RedisDB:
 
-    def __init__(self, host, port, db):
+    def __init__(self, name, host, port, db):
+        self.name = name
         self.host = host
         self.port = port
         self.db = db
 
     def __enter__(self):
         try:
-            self.conn = Redis(host=self.host, port=self.port, db=self.db)
+            self.conn = Redis(username=self.name, host=self.host, port=self.port, db=self.db)
         except exceptions.TimeoutError as e:
             print(e)
         except exceptions.AuthenticationWrongNumberOfArgsError as e:

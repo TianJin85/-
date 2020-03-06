@@ -29,7 +29,7 @@ def get_token():
                                            "appid": wechat.appdi, "secret": wechat.secret})
     result = eval(result.text)
     if "errcode" not in result:
-        with RedisDB(host=res.host, port=res.port, db=res.db) as conn:
+        with RedisDB(username=res.name,host=res.host, port=res.port, db=res.db) as conn:
             conn.set("access_token", result["access_token"])
 
     return jsonify(result)

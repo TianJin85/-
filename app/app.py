@@ -5,6 +5,7 @@
 import json
 import time
 
+from app.api.view import create_view
 from app.libs.lin_flask import LinFlask
 from flask import request, g
 from flask_cors import CORS
@@ -15,7 +16,6 @@ from flask_debugtoolbar import DebugToolbarExtension
 def register_blueprints(app):
     from app.api.v1 import create_v1
     from app.api.cms import create_cms
-    from app.api.view import create_view
     app.register_blueprint(create_v1(), url_prefix='/v1')
     app.register_blueprint(create_cms(), url_prefix='/cms')
     app.register_blueprint(create_view(), url_prefix='/view')
@@ -87,5 +87,6 @@ def create_app(register_all=True, environment='production'):
         # 创建所有表格
         create_tables(app)
     app.config['SECRET_KEY'] = '<replace with a secret key>'
+    app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
     toolbar = DebugToolbarExtension(app)
     return app

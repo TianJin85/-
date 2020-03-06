@@ -17,3 +17,6 @@
 ### Features
 
 - **cli:** config 配置 alias 选项 暂不支持转换 usingComponents [#1704](https://github.com/NervJS/taro/issues/1704) ([#1859](https://github.com/NervJS/taro/issues/1859)) ([e3a5548](https://github.com/NervJS/taro/commit/e3a5548)) -->
+gunicorn -w 4 -b 0.0.0.0:5000 "app.app:create_app()"
+
+https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxb10a1f7d311d8f9b&redirect_uri=http://www.anshun520.com/view/wechat/index&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect
