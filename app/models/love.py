@@ -58,6 +58,16 @@ class Love_user(Base):
                 commit=True
             )
 
+    @classmethod
+    def add_openid(cls, openid):
+        user = Love_user.query.filter_by(openid=openid).first()
+        if user is None:
+            Love_user.create(
+                openid=openid,
+                commit=True
+            )
+
+        return True
 
 
 
