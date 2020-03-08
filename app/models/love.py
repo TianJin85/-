@@ -75,7 +75,7 @@ class Love_user(Base):
 class Love_message(Base):
     __tablename__ = "love_message"
     id = Column("id", Integer, primary_key=True, autoincrement=True, comment="信息id")
-    userName = Column("username", String(15), nullable=False, comment="用户姓名")
+    username = Column("username", String(15), nullable=False, comment="用户姓名")
     uid = Column("uid", Integer, ForeignKey("love_user.id"), comment="用户id")
     census = Column("census", String(62),  comment="户籍所在地")
     cardid = Column("cardid", String(28), nullable=False, comment="身份证号码")
@@ -100,14 +100,45 @@ class Love_message(Base):
     housing = Column("housing", String(62), comment="住房情况")
     children = Column("children", String(10), comment="有无子女")
     personage = Column("presonage", String(500), comment="个人介绍")
+    rest = Column("rest", String(500), comment="其他要求")
+
+    @classmethod
+    def add_message(cls, uid, username, census, cardid, stature, weight, wechat, qq, school, education, workunit, occupation,\
+                    profession, monthly, member, housing, rest, vehicle, marriage, age,):
+
+        user = Love_message.query.filter_by(openid=uid).first()
+        if user is None:
+            Love_message.create(
+                uid=uid,
+                username=username,
+                census=census,
+                cardid=cardid,
+                stature=stature,
+                weight=weight,
+                wechat=wechat,
+                qq=qq,
+                school=school,
+                education=education,
+                workunit=workunit,
+                occupation=occupation,
+                profession=profession,
+                monthly=monthly,
+                member=member,
+                housing=housing,
+                rest=rest,
+                vehicle=vehicle,
+                marriage=marriage,
+                age=age,
+                commit=True
+            )
 
 
-class Love_standatds(Base):
+class Love_selection(Base):
 
-    __tablename__ = 'love_standatds'
+    __tablename__ = 'love_selection'
     id = Column("id", Integer, primary_key=True, autoincrement=True, comment="择偶id")
     marriage = Column("marriage", String(12), nullable=False, comment="婚史情况")
-    sex = Column("sex", Integer, nullable=False, comment="年龄")
+    age = Column("age", Integer, nullable=False, comment="年龄")
     stature = Column("stature", String(4), nullable=False, comment="最低身高要求")
     weight = Column("weight", String(4), nullable=False, comment="体重")
     monthly = Column("monthly", Float, nullable=False, comment="月薪")

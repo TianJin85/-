@@ -6,13 +6,17 @@
 @Email   : tianjincn@163.com
 @Software: PyCharm
 """
+import base64
+import os
+
 import requests
 from lin.redprint import Redprint
 
-from flask import render_template, redirect, request, jsonify
+from flask import render_template, redirect, request, jsonify, url_for, Response
 
 from app.config.secure import WxAppidSecretSecure
 from app.models.love import Love_user
+from app.validators.love_forms import MessageForm
 
 wechat = Redprint("wechat")
 
@@ -45,42 +49,15 @@ def index():
     print(data)
     access_token = data['access_token']
     openid = data['openid']
-
-    source_url = 'https://api.weixin.qq.com/sns/userinfo' \
-                 + '?access_token={ACCESS_TOKEN}&openid={OPENID}&lang=zh_CN'
-    useinfo_url = source_url.format(ACCESS_TOKEN=access_token, OPENID=openid)
-    resp = requests.get(useinfo_url)
-    data = eval(resp.text)
-    print(data)
     userinfo = {
-        'nickname': data['nickname'],
-        'sex': data['sex'],
-        'province': data['province'],
-        'city': data['city'],
-        'country': data['country'],
-        'headimgurl': data['headimgurl']
+        "openid": openid,
+        "access_token": access_token
     }
+
+    Love_user.add_openid(openid)    # 储存用户的OPENDI
+
     return render_template("index.html")
 
-    # if resp.status_code == 200:
-    #     data = eval(resp.text)
-    #     userinfo = {
-    #         'nickname': data['nickname'],
-    #         'openid': data['openid'],
-    #         'unionid': data['unionid'],
-    #         'portraits': data['portraits'],
-    #         'sex': data['sex'],
-    #         'address': data['address'],
-    #         'language': data['language'],
-    #         'subscribe_tiem': data['subscribe_tiem'],
-    #         'province': data['province'],
-    #         'headimgurl': data['headimgurl']
-    #     }
-    # else:
-    #     return "登录失败"
-    # # Love_user.add_user(**userinfo)
-    # # return render_template('index.html')
-    # return resp
 
 @wechat.route("/integral", methods=['GET'])
 def integral():
@@ -103,13 +80,39 @@ def consumption():
     return render_template("consumption.html")
 
 
-@wechat.route("/enroll", methods=["GET"])
-def enroll():
+@wechat.route("/enroll/<int:openid>", methods=["POST", "GET"])
+@wechat.route("/enroll", methods=["POST", "GET"])
+def enroll(openid=None):
+    form = MessageForm(request.form)
+
+    if request.method == "POST":
+        if form.validate():
+
+            if "images_id1" in request.form.to_dict():
+                images_id1 = request.form.to_dict()["images_id1"]
+                result = request.form.to_dict()
+                images = result["images_src1"]
+                images_base64 = result["images_src1"].split(",")[1]
+
+                images_type = None
+                if "png" in images:
+                    images_type = "png"
+                elif "jpg" in images:
+                    images_type = "jpg"
+                data = base64.b64decode(images_base64)
+                with open(os.path.join(os.getcwd(), "app", "static", "userimg",\
+                                       "{0}.{1}".format(images_id1, images_type)), "wb") as f:
+                    f.write(data)
+
+            return redirect(url_for("view.wechat+message"))
+        else:
+            print(form.errors)
+
     return render_template("enroll.html")
 
 
 @wechat.route("/message", methods=["GET"])
-def message():
+def message(openid=None):
     return render_template("message.html")
 
 
