@@ -15,7 +15,8 @@ from lin.redprint import Redprint
 from flask import render_template, redirect, request, jsonify, url_for, Response
 
 from app.config.secure import WxAppidSecretSecure
-from app.models.love import Love_user
+from app.controller.save import Save
+from app.models.love import Love_user, Love_message, Love_selection
 from app.validators.love_forms import MessageForm
 
 wechat = Redprint("wechat")
@@ -38,129 +39,176 @@ def test():
     return redirect(url)
 
 
+@wechat.route("/index/<userid>", methods=[ "GET"])
 @wechat.route("/index", methods=["GET"])
-def index():
+def index(userid=None):
     code = request.args.get('code')
-    source_url = 'https://api.weixin.qq.com/sns/oauth2/access_token?'\
-        +'appid={APPID}&secret={APPSECRET}&code={CODE}&grant_type=authorization_code'
-    access_token_url = source_url.format(APPID=wechat_secure.appdi, APPSECRET=wechat_secure.secret, CODE=code)
-    resp = requests.get(access_token_url)
-    data = eval(resp.text) # 将字符串转为字典
-    print(data)
-    access_token = data['access_token']
-    openid = data['openid']
-    userinfo = {
-        "openid": openid,
-        "access_token": access_token
-    }
+    if code:
+        source_url = 'https://api.weixin.qq.com/sns/oauth2/access_token?'\
+            +'appid={APPID}&secret={APPSECRET}&code={CODE}&grant_type=authorization_code'
+        access_token_url = source_url.format(APPID=wechat_secure.appdi, APPSECRET=wechat_secure.secret, CODE=code)
+        resp = requests.get(access_token_url)
+        if resp.ok:
+            data = eval(resp.text) # 将字符串转为字典
+            openid = data['openid']
+            access_token = data["access_token"]
+            info_url = " https://api.weixin.qq.com/sns/userinfo?access_token={ACCESS_TOKEN}&openid={OPENID}&lang=zh_CN"
+            resp_user = requests.get(info_url.format(ACCESS_TOKEN=access_token, OPENID=openid))
+            if resp_user.ok:
+                result = eval(resp_user.text)
+                try:
+                    userid = Love_user.add_openid(openid=openid, headimgurl=result["headimgurl"])
+                except:
+                    return "注册数据失败"
+        else:
+            return "登录失败"
 
-    Love_user.add_openid(openid)    # 储存用户的OPENDI
-
-    return render_template("index.html")
+    return render_template("index.html", userid=userid)
 
 
+@wechat.route("/integral/<userid>", methods=[ "GET"])
 @wechat.route("/integral", methods=['GET'])
-def integral():
+def integral(userid=None):
 
-    return render_template("integral.html")
+    return render_template("integral.html", userid=userid)
 
 
+@wechat.route("/activity/<userid>", methods=["POST", "GET"])
 @wechat.route("/activity", methods=['GET'])
-def activity():
-    return render_template("activity.html")
+def activity(userid=None):
+    return render_template("activity.html", userid=userid)
 
 
+@wechat.route("/activity_details/<userid>", methods=["POST", "GET"])
 @wechat.route("/activity_details", methods=["GET"])
-def activity_details():
+def activity_details(userid=None):
     return render_template("activity_details.html")
 
 
+@wechat.route("/consumption/<userid>", methods=["POST", "GET"])
 @wechat.route("/consumption", methods=["GET"])
-def consumption():
+def consumption(userid):
     return render_template("consumption.html")
 
 
-@wechat.route("/enroll/<int:openid>", methods=["POST", "GET"])
+@wechat.route("/enroll/<userid>", methods=["POST", "GET"])
 @wechat.route("/enroll", methods=["POST", "GET"])
-def enroll(openid=None):
+def enroll(userid=None):
     form = MessageForm(request.form)
 
     if request.method == "POST":
         if form.validate():
+            result = request.form.to_dict()
+            imgpath = Save(result=result).get_data()        # 保存图片获取地址
+            mess_data = {
+                "uid": userid,
+                "username": result["username"],
+                "census": result["census"],
+                "cardid": result["cardid"],
+                "stature": result["stature"],
+                "weight": result["weight"],
+                "wechat": result["wechat"],
+                "qq": result["qq"],
+                "school": result["school"],
+                "education": result["education"],
+                "workunit": result["workunit"],
+                "occupation": result["occupation"],
+                "profession": result["profession"],
+                "monthly": result["monthly"],
+                "member": result["member"],
+                "housing": result["housing"],
+                "rest": result["rest"],
+                "vehicle": result["vehicle"],
+                "marriage": result["marriage"],
+                "phone": result["phone"],
+                "images": imgpath
+            }
+            mess_id = Love_message.add_message(**mess_data)
+            select_data = {"mid": mess_id,
+                    "marriage": result["marriage"],
+                    "age": result["age"],
+                    "stature": result["ze_stature"],
+                    "weight": result["ze_weight"],
+                    "monthly": result["ze_monthly"],
+                    "housing": result["ze_housing"],
+                    "vehicle": result["ze_vehicle"],
+                    "children": result["ze_housing"],
+                    "census": result["ze_census"],
+                    "pests": result["ze_pests"]}
 
-            if "images_id1" in request.form.to_dict():
-                images_id1 = request.form.to_dict()["images_id1"]
-                result = request.form.to_dict()
-                images = result["images_src1"]
-                images_base64 = result["images_src1"].split(",")[1]
+            Love_selection.add_selection(**select_data)
 
-                images_type = None
-                if "png" in images:
-                    images_type = "png"
-                elif "jpg" in images:
-                    images_type = "jpg"
-                data = base64.b64decode(images_base64)
-                with open(os.path.join(os.getcwd(), "app", "static", "userimg",\
-                                       "{0}.{1}".format(images_id1, images_type)), "wb") as f:
-                    f.write(data)
 
-            return redirect(url_for("view.wechat+message"))
         else:
             print(form.errors)
 
-    return render_template("enroll.html")
+    return render_template("enroll.html", userid=userid)
 
 
+@wechat.route("/message/<userid>", methods=["GET"])
 @wechat.route("/message", methods=["GET"])
-def message(openid=None):
-    return render_template("message.html")
+def message(userid=None):
+
+    return render_template("message.html", userid=userid)
 
 
+@wechat.route("/message_details/<userid>", methods=["GET"])
 @wechat.route("/message_details", methods=["GET"])
-def message_details():
+def message_details(userid=None):
+    Love_user.delete_user(7)
     return render_template("message_details.html")
 
 
+@wechat.route("/order/<userid>", methods=["GET"])
 @wechat.route("/order", methods=["GET"])
-def order():
+def order(userid=None):
     return render_template("order.html")
 
 
+@wechat.route("/order_details/<userid>", methods=["GET"])
 @wechat.route("/order_details", methods=["GET"])
-def order_details():
-    return render_template("order_details.html")
+def order_details(userid=None):
+    return render_template("order_details.html", userid=userid)
 
 
+@wechat.route("/personal/<userid>", methods=["GET"])
 @wechat.route("/personal", methods=["GET"])
-def personal():
-    return render_template("personal.html")
+def personal(userid=None):
+    return render_template("personal.html", userid=userid)
 
 
+@wechat.route("/personal_details/<userid>", methods=["GET"])
 @wechat.route("/personal_details", methods=["GET"])
-def personal_details():
+def personal_details(userid=None):
     return render_template("personal_details.html")
 
 
+@wechat.route("/recharge/<userid>", methods=["GET"])
 @wechat.route("/recharge", methods=["GET"])
-def recharge():
+def recharge(userid=None):
     return render_template("recharge.html")
 
 
+@wechat.route("/recharge_vip/<userid>", methods=["GET"])
 @wechat.route("/recharge_vip", methods=["GET"])
-def recharge_vip():
+def recharge_vip(userid=None):
     return render_template("Recharge_vip.html")
 
 
+@wechat.route("/search_criteria/<userid>", methods=["GET"])
 @wechat.route("/search_criteria", methods=["GET"])
-def search_criteria():
+def search_criteria(userid=None):
+
     return render_template("search_criteria.html")
 
 
+@wechat.route("/search_result/<userid>", methods=["GET"])
 @wechat.route("/search_result", methods=["GET"])
-def search_result():
-    return render_template("search_result.html")
+def search_result(userid=None):
+    return render_template("search_result.html", userid)
 
 
+@wechat.route("/see_qq/<userid>", methods=["POST", "GET"])
 @wechat.route("/see_qq", methods=["GET"])
-def see_qq():
+def see_qq(userid=None):
     return render_template("see_qq.html")

@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>活动</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="{{ url_for('static', filename='css/mui.min.css') }}" rel="stylesheet" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav navs">
+
+			<a class="mui-action-back"><img src="{{ url_for('static', filename='images/4129.png') }}"/>返回</a>
+			<h1 class="mui-title">活动</h1>
+		</header>
+		<div class="mui-content">
+			<div class="order">
+				<div class="sliders">
+					<div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted sliders_list">
+						<a class="mui-control-item mui-active" href="#item1">全部</a>
+						<a class="mui-control-item" href="#item2">报名中</a>
+						<a class="mui-control-item" href="#item3">已报名</a>
+						<a class="mui-control-item" href="#item4">已结束</a>
+					</div>
+					<div class="mui-slider-group">
+						<div id="item1" class="mui-slider-item mui-control-content mui-active">
+							<div class="activi_list">
+								<ul class="activi_ul">
+									<li>
+										<a href="{{ url_for('view.wechat+activity_details', userid=userid) }}">
+											<img src="{{ url_for('static', filename='images/2.png') }}" />
+											<h4>某某某活动名称活动名称活动某某某活动名称活动名称 活动某某某活动名称活动名称活动</h4>
+											<div class="vip_div">
+												<button class="jiage">￥48.00</button>
+												<button class="mvip">vip免费</button>
+												<p>活动时间:2020-02-08</p>
+											</div>
+											<div class="boams">
+												<p>已报名:<span>27/30</span></p>
+												<button class="sup">报名(剩余1天)</button>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<img src="{{ url_for('static', filename='images/2.png') }}" />
+											<h4>某某某活动名称活动名称活动某某某活动名称活动名称 活动某某某活动名称活动名称活动</h4>
+											<div class="vip_div">
+												<button class="jiage">￥48.00</button>
+												<button class="mvip">vip免费</button>
+												<p>活动时间:2020-02-08</p>
+											</div>
+											<div class="boams">
+												<p>已报名:<span>27/30</span></p>
+												<button class="sup1">已报名</button>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<img src="{{ url_for('static', filename='images/2.png') }}" />
+											<h4>某某某活动名称活动名称活动某某某活动名称活动名称 活动某某某活动名称活动名称活动</h4>
+											<div class="vip_div">
+												<button class="jiage">￥48.00</button>
+												<button class="mvip">vip免费</button>
+												<p>活动时间:2020-02-08</p>
+											</div>
+											<div class="boams">
+												<p>已报名:<span>27/30</span></p>
+												<button class="sup2">已结束</button>
+											</div>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div id="item2" class="mui-slider-item mui-control-content">
+							<div class="activi_list">
+								<ul class="activi_ul">
+									<li>
+										<a href="#">
+											<img src="{{ url_for('static', filename='images/2.png') }}" />
+											<h4>某某某活动名称活动名称活动某某某活动名称活动名称 活动某某某活动名称活动名称活动</h4>
+											<div class="vip_div">
+												<button class="jiage">￥48.00</button>
+												<button class="mvip">vip免费</button>
+												<p>活动时间:2020-02-08</p>
+											</div>
+											<div class="boams">
+												<p>已报名:<span>27/30</span></p>
+												<button class="sup">报名(剩余1天)</button>
+											</div>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div id="item3" class="mui-slider-item mui-control-content">
+							<div class="activi_list">
+								<ul class="activi_ul">
+									<li>
+										<a href="#">
+											<img src="{{ url_for('static', filename='images/2.png') }}" />
+											<h4>某某某活动名称活动名称活动某某某活动名称活动名称 活动某某某活动名称活动名称活动</h4>
+											<div class="vip_div">
+												<button class="jiage">￥48.00</button>
+												<button class="mvip">vip免费</button>
+												<p>活动时间:2020-02-08</p>
+											</div>
+											<div class="boams">
+												<p>已报名:<span>27/30</span></p>
+												<button class="sup1">已报名</button>
+											</div>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div id="item4" class="mui-slider-item mui-control-content">
+							<div class="activi_list">
+								<ul class="activi_ul">
+									<li>
+										<a href="#">
+											<img src="{{ url_for('static', filename='images/2.png') }}" />
+											<h4>某某某活动名称活动名称活动某某某活动名称活动名称 活动某某某活动名称活动名称活动</h4>
+											<div class="vip_div">
+												<button class="jiage">￥48.00</button>
+												<button class="mvip">vip免费</button>
+												<p>活动时间:2020-02-08</p>
+											</div>
+											<div class="boams">
+												<p>已报名:<span>27/30</span></p>
+												<button class="sup2">已结束</button>
+											</div>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="{{ url_for('static', filename='js/mui.min.js') }}"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+	</body>
+
+</html>

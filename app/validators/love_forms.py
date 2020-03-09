@@ -19,7 +19,7 @@ class MessageForm(Form):
         DataRequired("电话号码"),
         Regexp(r'[0-9]{11}', message="电话号码必须是11位0-9组成的数字")
     ])
-    census = StringField("身份证号码", validators=[
+    cardid = StringField("身份证号码", validators=[
         DataRequired("身份证不能为空"),
         Regexp(r'[0-9]{18}', message="身份证号码必须是18位0-9组成的数字")
     ])
