@@ -16,7 +16,9 @@ from flask import render_template, redirect, request, jsonify, url_for, Response
 
 from app.config.secure import WxAppidSecretSecure
 from app.controller.save import Save
-from app.models.love import Love_user, Love_message, Love_selection
+from app.models.message import Message
+from app.models.selection import Selection
+from app.models.user import User
 from app.validators.love_forms import MessageForm
 
 wechat = Redprint("wechat")
@@ -42,6 +44,7 @@ def test():
 @wechat.route("/index/<userid>", methods=[ "GET"])
 @wechat.route("/index", methods=["GET"])
 def index(userid=None):
+    userinfo = {"userid": userid, "messid": None}
     code = request.args.get('code')
     if code:
         source_url = 'https://api.weixin.qq.com/sns/oauth2/access_token?'\
@@ -56,19 +59,24 @@ def index(userid=None):
             resp_user = requests.get(info_url.format(ACCESS_TOKEN=access_token, OPENID=openid))
             if resp_user.ok:
                 result = eval(resp_user.text)
-                try:
-                    userid = Love_user.add_openid(openid=openid, headimgurl=result["headimgurl"])
-                except:
-                    return "注册数据失败"
+
+                user = User.add_openid(openid=openid, headimgurl=result["headimgurl"])    # 查询数据数据不存在就储存数据
+                if user:
+                    userinfo["userid"] = user.id
+                    messid = Message.get_messid(uid=user.id)
+                    userinfo["messid"] = messid
+
+
         else:
             return "登录失败"
 
-    return render_template("index.html", userid=userid)
+    return render_template("index.html", **userinfo)
 
 
 @wechat.route("/integral/<userid>", methods=[ "GET"])
 @wechat.route("/integral", methods=['GET'])
 def integral(userid=None):
+    userid = Message.get_message(uid=userid)
 
     return render_template("integral.html", userid=userid)
 
@@ -101,7 +109,7 @@ def enroll(userid=None):
             result = request.form.to_dict()
             imgpath = Save(result=result).get_data()        # 保存图片获取地址
             mess_data = {
-                "uid": userid,
+                "uid": result["userid"],
                 "username": result["username"],
                 "census": result["census"],
                 "cardid": result["cardid"],
@@ -123,7 +131,8 @@ def enroll(userid=None):
                 "phone": result["phone"],
                 "images": imgpath
             }
-            mess_id = Love_message.add_message(**mess_data)
+            Message.add_message(**mess_data)
+            mess_id = Message.get_messid(uid=userid)
             select_data = {"mid": mess_id,
                     "marriage": result["marriage"],
                     "age": result["age"],
@@ -136,11 +145,16 @@ def enroll(userid=None):
                     "census": result["ze_census"],
                     "pests": result["ze_pests"]}
 
-            Love_selection.add_selection(**select_data)
+            Selection.add_selection(**select_data)
 
 
         else:
-            print(form.errors)
+            error_data = ""
+            for items in form.errors.values():
+                for item in items:
+                    error_data+=item+"\n"
+
+            return jsonify({"errors": error_data, "status": 200})
 
     return render_template("enroll.html", userid=userid)
 
@@ -155,7 +169,7 @@ def message(userid=None):
 @wechat.route("/message_details/<userid>", methods=["GET"])
 @wechat.route("/message_details", methods=["GET"])
 def message_details(userid=None):
-    Love_user.delete_user(7)
+    User.add_vip(userid)
     return render_template("message_details.html")
 
 
@@ -174,12 +188,14 @@ def order_details(userid=None):
 @wechat.route("/personal/<userid>", methods=["GET"])
 @wechat.route("/personal", methods=["GET"])
 def personal(userid=None):
-    return render_template("personal.html", userid=userid)
-
+    mess_data =Message.get_message(userid)
+    mess_data["userid"] = userid
+    return render_template("personal.html", mess_data=mess_data)
 
 @wechat.route("/personal_details/<userid>", methods=["GET"])
 @wechat.route("/personal_details", methods=["GET"])
 def personal_details(userid=None):
+
     return render_template("personal_details.html")
 
 

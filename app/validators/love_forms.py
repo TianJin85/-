@@ -16,7 +16,7 @@ from wtforms.validators import DataRequired, Regexp, EqualTo, length, Optional, 
 class MessageForm(Form):
     username = StringField("用户姓名", validators=[DataRequired(message="用户名不能为空")])
     phone = StringField("电话号码", validators=[
-        DataRequired("电话号码"),
+        DataRequired("电话号码不能为空"),
         Regexp(r'[0-9]{11}', message="电话号码必须是11位0-9组成的数字")
     ])
     cardid = StringField("身份证号码", validators=[
@@ -26,8 +26,10 @@ class MessageForm(Form):
     wechat = StringField("微信号", validators=[DataRequired(message="微信号不能为空")])
     qq = StringField("QQ号", validators=[DataRequired(message="QQ号不能为空")])
     school = StringField("毕业学校",validators=[DataRequired(message="毕业学校不能为空")])
-
-
+    stature = StringField("身高", validators=[DataRequired(message="身高不能为空")])
+    weight = StringField("体重", validators=[DataRequired(message="体重不能为空")])
+    workunit = StringField("工作单位", validators=[DataRequired(message="工作单位不能为空")])
+    occupation = StringField("职业", validators=[DataRequired(message="职业不能为空")])
 
 # class StandatdsForm(Form):
 #     Marriage = StringField("婚史情况", validators=[])
