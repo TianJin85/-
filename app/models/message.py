@@ -8,10 +8,20 @@
 """
 from datetime import datetime
 
-from app.models.love import Love_message
+from lin import db
+
+
+from app.models.love import Love_message, Love_selection, session
 
 
 class Message(Love_message):
+    from sqlalchemy.orm import sessionmaker
+    from sqlalchemy import create_engine
+
+    engine = create_engine("mysql+cymysql://tianjin:TJ307440205@211.149.250.67:3306/marriage")
+    Session = sessionmaker(bind=engine)
+
+    session = Session()
 
     @classmethod
     def add_message(cls, uid, username, census, cardid, stature, weight, wechat, qq, school, education, workunit,
@@ -89,13 +99,11 @@ class Message(Love_message):
             mess_id = mess.id
 
         return mess_id
+
     @classmethod
-    def update_mess(cls, uid):
-        mess = Love_message.query.filter_by(uid=uid).first()
-        if mess is None:
-            pass
-        else:
-            mess.update(
-                cardid=522228199610032811,
-                commit=True
-            )
+    def get_unenroll(cls, uid):
+        datainfo = db.session.query(Love_message, Love_selection).filter_by(uid=uid).join(Love_selection).first()
+
+        return datainfo
+
+

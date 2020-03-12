@@ -53,8 +53,8 @@ class Love_message(Base):
     stature = Column("stature", String(4), comment="身高")
     weight = Column("weight", String(4),  comment="体重")
     phone = Column("phone", String(13), nullable=False, comment="电话号码")
-    wechat = Column("wechat", String(30), nullable=False, comment="微信号")
-    qq = Column("qq", String(20), nullable=False, comment="QQ号")
+    wechat = Column("wechat", String(16), nullable=False, comment="微信号")
+    qq = Column("qq", String(16), nullable=False, comment="QQ号")
     school = Column("school", String(32),  comment="毕业学校")
     images = Column("images", String(200), comment="用户图片")
     hobby = Column("hobby", String(120), comment="兴趣爱好")
@@ -65,12 +65,12 @@ class Love_message(Base):
     monthly = Column("monthly", String(30), comment="月薪范围")
     workunit = Column("workunit", String(32), comment="工作单位")
     occupation = Column("occupation", String(32), comment="职业")
-    profession = Column("profession", String(12),comment="职业性质")
+    profession = Column("profession", String(12), comment="职业性质")
     member = Column("member", String(32), comment="家庭成员")
     marriage = Column("marriage", String(20), comment="婚恋情况")
     housing = Column("housing", String(62), comment="住房情况")
     children = Column("children", String(10), comment="有无子女")
-    personage = Column("presonage", String(500), comment="个人介绍")
+    presonage = Column("presonage", String(500), comment="个人介绍")
     rest = Column("rest", String(500), comment="其他要求")
 
 
@@ -88,7 +88,7 @@ class Love_selection(Base):
     vehicle = Column("vehicle", String(3), nullable=False, comment="是否有车")
     children = Column("children", String(10), nullable=False, comment="有无子女")
     census = Column("census", String(62), nullable=False, comment="户籍所在地")
-    pests = Column("rests", String(500), comment="其他")
+    rests = Column("rests", String(500), comment="其他")
 
 
 class Love_payment(Base):
@@ -120,6 +120,7 @@ class Love_ctivity(Base):
     date = Column("date", DateTime, nullable=False, comment="活动时间")
     rule = Column("rule", String(500), comment="活动规则")
     message = Column("message", String(200), comment="其他信息")
+    initiator = Column("initiator", String(10), comment="发起人")
     money = Column("money", Float, comment="活动收费金额")
     num = Column("num", Integer, comment="报名次数")
 

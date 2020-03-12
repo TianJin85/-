@@ -90,4 +90,4 @@ class User(Love_user):
                 commit=True
             )
 
-        return user
+        return True

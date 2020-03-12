@@ -13,7 +13,7 @@ class Selection(Love_selection):
 
     @classmethod
     def add_selection(cls, mid, marriage, age, stature, weight, monthly, housing, vehicle, children, census, pests):
-        mess = Love_selection.query.filter_by(uid=mid).first()
+        mess = Love_selection.query.filter_by(mid=mid).first()
         if mess is None:
             Love_selection.create(
                 mid=mid,

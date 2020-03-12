@@ -7,6 +7,7 @@
 @Software: PyCharm
 """
 import base64
+import json
 import os
 
 import requests
@@ -62,13 +63,16 @@ def index(userid=None):
 
                 user = User.add_openid(openid=openid, headimgurl=result["headimgurl"])    # 查询数据数据不存在就储存数据
                 if user:
-                    userinfo["userid"] = user.id
-                    messid = Message.get_messid(uid=user.id)
+                    userid = User.get_user_id(openid=openid)
+                    messid = Message.get_messid(uid=userid)
                     userinfo["messid"] = messid
+                    userinfo["userid"] = userid
 
 
         else:
             return "登录失败"
+
+
 
     return render_template("index.html", **userinfo)
 
@@ -76,7 +80,8 @@ def index(userid=None):
 @wechat.route("/integral/<userid>", methods=[ "GET"])
 @wechat.route("/integral", methods=['GET'])
 def integral(userid=None):
-    userid = Message.get_message(uid=userid)
+    mess = Message.get_messid(uid=userid)
+    print(mess)
 
     return render_template("integral.html", userid=userid)
 
@@ -84,6 +89,8 @@ def integral(userid=None):
 @wechat.route("/activity/<userid>", methods=["POST", "GET"])
 @wechat.route("/activity", methods=['GET'])
 def activity(userid=None):
+
+
     return render_template("activity.html", userid=userid)
 
 
@@ -106,57 +113,65 @@ def enroll(userid=None):
 
     if request.method == "POST":
         if form.validate():
-            result = request.form.to_dict()
-            imgpath = Save(result=result).get_data()        # 保存图片获取地址
-            mess_data = {
-                "uid": result["userid"],
-                "username": result["username"],
-                "census": result["census"],
-                "cardid": result["cardid"],
-                "stature": result["stature"],
-                "weight": result["weight"],
-                "wechat": result["wechat"],
-                "qq": result["qq"],
-                "school": result["school"],
-                "education": result["education"],
-                "workunit": result["workunit"],
-                "occupation": result["occupation"],
-                "profession": result["profession"],
-                "monthly": result["monthly"],
-                "member": result["member"],
-                "housing": result["housing"],
-                "rest": result["rest"],
-                "vehicle": result["vehicle"],
-                "marriage": result["marriage"],
-                "phone": result["phone"],
-                "images": imgpath
-            }
-            Message.add_message(**mess_data)
-            mess_id = Message.get_messid(uid=userid)
-            select_data = {"mid": mess_id,
+            try:
+                result = request.form.to_dict()
+                imgpath = Save(result=result).get_data()        # 保存图片获取地址
+                mess_data = {
+                    "uid": result["userid"],
+                    "username": result["username"],
+                    "census": result["census"],
+                    "cardid": result["cardid"],
+                    "stature": result["stature"],
+                    "weight": result["weight"],
+                    "wechat": result["wechat"],
+                    "qq": result["qq"],
+                    "school": result["school"],
+                    "education": result["education"],
+                    "workunit": result["workunit"],
+                    "occupation": result["occupation"],
+                    "profession": result["profession"],
+                    "monthly": result["monthly"],
+                    "member": result["member"],
+                    "housing": result["housing"],
+                    "rest": result["rest"],
+                    "vehicle": result["vehicle"],
                     "marriage": result["marriage"],
-                    "age": result["age"],
-                    "stature": result["ze_stature"],
-                    "weight": result["ze_weight"],
-                    "monthly": result["ze_monthly"],
-                    "housing": result["ze_housing"],
-                    "vehicle": result["ze_vehicle"],
-                    "children": result["ze_housing"],
-                    "census": result["ze_census"],
-                    "pests": result["ze_pests"]}
-
-            Selection.add_selection(**select_data)
-
-
+                    "phone": result["phone"],
+                    "images": imgpath
+                }
+                Message.add_message(**mess_data)
+                mess_id = Message.get_messid(uid=result["userid"])
+                select_data = {"mid": mess_id,
+                        "marriage": result["marriage"],
+                        "age": result["age"],
+                        "stature": result["ze_stature"],
+                        "weight": result["ze_weight"],
+                        "monthly": result["ze_monthly"],
+                        "housing": result["ze_housing"],
+                        "vehicle": result["ze_vehicle"],
+                        "children": result["ze_housing"],
+                        "census": result["ze_census"],
+                        "pests": result["ze_pests"]}
+                Selection.add_selection(**select_data)
+                return jsonify({"data": "数据提交成功", "status": 200})
+            except os.error as e:
+                return jsonify({"errors": e, "status": 500})
         else:
             error_data = ""
             for items in form.errors.values():
                 for item in items:
                     error_data+=item+"\n"
 
-            return jsonify({"errors": error_data, "status": 200})
+            return jsonify({"errors": error_data, "status": 300})
 
     return render_template("enroll.html", userid=userid)
+
+
+@wechat.route("/upenroll/<userid>", methods=["GET"])
+@wechat.route(("/upenroll"))
+def upenroll(userid=None):
+
+    return render_template("upenroll.html", userid=userid)
 
 
 @wechat.route("/message/<userid>", methods=["GET"])
@@ -228,3 +243,14 @@ def search_result(userid=None):
 @wechat.route("/see_qq", methods=["GET"])
 def see_qq(userid=None):
     return render_template("see_qq.html")
+
+
+
+
+@wechat.route("/messinfo/<userid>", methods=["POST", "GET"])
+@wechat.route("/messinfo", methods=["GET", "POST"])
+def messinfo(userid=None):
+    if request.method == "POST":
+        userid = request.form["userid"]
+        data = Message.get_unenroll(userid)
+        return jsonify(data)
