@@ -70,7 +70,10 @@ class Message(Love_message):
             messifno["weight"] = mess.weight
             messifno["education"] = mess.education
             messifno["occupation"] = mess.occupation
-            messifno["images"] = mess.images
+            messifno["images"] = eval(mess.images)[0]
+
+            print(eval(mess.images)[0])
+
             cardid = mess.cardid
             year = cardid[6:10]
             month = cardid[10:12]
@@ -105,5 +108,11 @@ class Message(Love_message):
         datainfo = db.session.query(Love_message, Love_selection).filter_by(uid=uid).join(Love_selection).first()
 
         return datainfo
+
+    @classmethod
+    def get_index(cls):
+        datainfo = db.session.query(Love_message, Love_selection).join(Love_selection).all()
+        return datainfo
+
 
 

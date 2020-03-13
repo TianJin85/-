@@ -57,9 +57,6 @@ class Love_message(Base):
     qq = Column("qq", String(16), nullable=False, comment="QQ号")
     school = Column("school", String(32),  comment="毕业学校")
     images = Column("images", String(200), comment="用户图片")
-    hobby = Column("hobby", String(120), comment="兴趣爱好")
-    blood = Column("blood", String(6), comment="血型")
-    nation = Column("nation", String(12), comment="民族")
     education = Column("education", String(20), comment="学历")
     vehicle = Column("vehicle", String(3), comment="是否有车")
     monthly = Column("monthly", String(30), comment="月薪范围")
@@ -69,8 +66,6 @@ class Love_message(Base):
     member = Column("member", String(32), comment="家庭成员")
     marriage = Column("marriage", String(20), comment="婚恋情况")
     housing = Column("housing", String(62), comment="住房情况")
-    children = Column("children", String(10), comment="有无子女")
-    presonage = Column("presonage", String(500), comment="个人介绍")
     rest = Column("rest", String(500), comment="其他要求")
 
 
@@ -79,15 +74,15 @@ class Love_selection(Base):
     __tablename__ = 'love_selection'
     id = Column("id", Integer, primary_key=True, autoincrement=True, comment="择偶id")
     mid = Column("mid", Integer, ForeignKey("love_message.id"), comment="用户信息id", unique=True)
-    marriage = Column("marriage", String(12), nullable=False, comment="婚史情况")
-    age = Column("age", String(30), nullable=False, comment="年龄")
-    stature = Column("stature", String(4), nullable=False, comment="最低身高要求")
-    weight = Column("weight", String(10), nullable=False, comment="体重范围")
-    monthly = Column("monthly", String(30), nullable=False, comment="月薪范围")
-    housing = Column("housing", String(62), nullable=False, comment="住房情况")
-    vehicle = Column("vehicle", String(3), nullable=False, comment="是否有车")
-    children = Column("children", String(10), nullable=False, comment="有无子女")
-    census = Column("census", String(62), nullable=False, comment="户籍所在地")
+    marriage = Column("marriage", String(12),comment="婚史情况")
+    age = Column("age", String(30), comment="年龄")
+    stature = Column("stature", String(4), comment="最低身高要求")
+    weight = Column("weight", String(10), comment="体重范围")
+    monthly = Column("monthly", String(30), comment="月薪范围")
+    housing = Column("housing", String(62), comment="住房情况")
+    vehicle = Column("vehicle", String(3), comment="是否有车")
+    children = Column("children", String(10), comment="有无子女")
+    census = Column("census", String(62), comment="户籍所在地")
     rests = Column("rests", String(500), comment="其他")
 
 

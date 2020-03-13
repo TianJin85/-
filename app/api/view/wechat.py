@@ -67,12 +67,8 @@ def index(userid=None):
                     messid = Message.get_messid(uid=userid)
                     userinfo["messid"] = messid
                     userinfo["userid"] = userid
-
-
         else:
             return "登录失败"
-
-
 
     return render_template("index.html", **userinfo)
 
@@ -89,7 +85,6 @@ def integral(userid=None):
 @wechat.route("/activity/<userid>", methods=["POST", "GET"])
 @wechat.route("/activity", methods=['GET'])
 def activity(userid=None):
-
 
     return render_template("activity.html", userid=userid)
 
@@ -254,3 +249,11 @@ def messinfo(userid=None):
         userid = request.form["userid"]
         data = Message.get_unenroll(userid)
         return jsonify(data)
+    data = Message.get_unenroll(userid)
+    return jsonify(data)
+
+@wechat.route("/indexinfo/<userid>", methods=["POST", "GET"])
+@wechat.route("/indexinfo", methods=["GET", "POST"])
+def indexinfo(userid=None):
+    data = Message.get_index()
+    return jsonify(data)
