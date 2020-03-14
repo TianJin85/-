@@ -6,6 +6,35 @@
 @Email   : tianjincn@163.com
 @Software: PyCharm
 """
+from flask import request, jsonify
 from lin.redprint import Redprint
 
-front = Redprint("front")
+from app.models.message import Message
+
+front = Redprint("wechat")
+
+
+@front.route("/search_sex", methods=["GET"])
+def search_sex():
+    sex = request.args["sex"]
+    if sex:
+        mess = Message.get_sex(sex=sex)
+    return jsonify(mess)
+
+
+@front.route("/search_id", methods=["GET"])
+def search_id():
+    result = None
+    uid = request.args["uid"]
+    if uid:
+        result = Message.get_unenroll(uid=uid)
+
+        delattr(result[0], "cardid")  # 删除属性
+
+    return jsonify(result)
+
+
+@front.route("/search_criteria", methods=["GET"])
+def search_search_criteria():
+
+    return request.args.to_dict()

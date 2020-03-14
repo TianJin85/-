@@ -38,6 +38,11 @@ class Love_user(Base):
     collect = Column('collect', String(120), comment="收藏")
     headimgurl = Column('headimgurl', String(200), comment="头像连接")
     vip = Column('vip', String(2), comment="是否是VIP")
+
+
+class Love_search_message(Base):
+    id = Column("id", Integer, primary_key=True, autoincrement=True, comment="查看id")
+    uid = Column("uid", Integer, ForeignKey("love_user.id"), comment="用户id", unique=True)
     search_wx = Column("search_wx", String(500), comment="查看过我微信的人")
     search_qq = Column("search_qq", String(500), comment="查看过我QQ的人")
     search_phone = Column("search_phone", String(500), comment="查看过我电话号码的人")
@@ -50,6 +55,8 @@ class Love_message(Base):
     uid = Column("uid", Integer, ForeignKey("love_user.id"), comment="用户id", unique=True)
     census = Column("census", String(62),  comment="户籍所在地")
     cardid = Column("cardid", String(28), nullable=False, comment="身份证号码")
+    sex = Column("sex", String(3), comment="性别")
+    age = Column("age", Integer, comment="年龄")
     stature = Column("stature", String(4), comment="身高")
     weight = Column("weight", String(4),  comment="体重")
     phone = Column("phone", String(13), nullable=False, comment="电话号码")
@@ -117,6 +124,7 @@ class Love_ctivity(Base):
     message = Column("message", String(200), comment="其他信息")
     initiator = Column("initiator", String(10), comment="发起人")
     money = Column("money", Float, comment="活动收费金额")
+    images = Column("images", String(60), comment="活动封面图片")
     num = Column("num", Integer, comment="报名次数")
 
 

@@ -15,9 +15,9 @@ def main():
         with db.auto_commit():
             # 创建一个超级管理员
             user = User()
-            user.username = 'admin'
+            user.username = 'super'
             user.password = '123456'
-            user.email = '307440205@qq.com'
+            user.email = '2387874606@qq.com'
             # admin 2 的时候为超级管理员，普通用户为 1
             user.admin = 2
             db.session.add(user)

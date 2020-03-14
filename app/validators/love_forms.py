@@ -7,7 +7,7 @@
 @Software: PyCharm
 """
 from lin import manager
-from wtforms import DateTimeField, PasswordField, FieldList, IntegerField, StringField, Form
+from wtforms import DateTimeField, PasswordField, FieldList, IntegerField, StringField, Form, FloatField
 from wtforms.validators import DataRequired, Regexp, EqualTo, length, Optional, NumberRange
 
 # from lin.forms import Form
@@ -42,4 +42,16 @@ class MessageForm(Form):
 #     Children = StringField("有无子女", validators=[])
 #     Census = StringField("户籍所在地", validators=[])
 #     Rests = StringField("其他", validators=[])
+
+
+class ctivity(Form):
+
+    name = StringField("活动名称", validators=[DataRequired(message="活动名称不能为空")])
+    adderss = StringField("活动地址", validators=[DataRequired(message="活动地址不能为空")])
+    testarea = StringField("活动简介", validators=[DataRequired(message="活动简介不能为空")])
+    date = DateTimeField("活动时间", validators=[DataRequired(message="活动时间不能为空")])
+    rule = StringField("活动规则", validators=[DataRequired(message="活动规则不能为空")])
+    initiator = StringField("发起人", validators=[DataRequired(message="发起人不能为空")])
+    money = FloatField("活动金额",validators=[DataRequired(message="活动金额不能为空")])
+
 

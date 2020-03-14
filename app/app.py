@@ -21,8 +21,8 @@ def register_blueprints(app):
     # app.register_blueprint(create_v1(), url_prefix='/v1')
     app.register_blueprint(create_cms(), url_prefix='/cms')
     app.register_blueprint(create_view(), url_prefix='/view')
-    app.register_blueprint(create_front(), url_prefix="front")
-    app.register_blueprint(create_back(), url_prefix="back")
+    app.register_blueprint(create_front(), url_prefix="/front")
+    app.register_blueprint(create_back(), url_prefix="/back")
 
 
 
