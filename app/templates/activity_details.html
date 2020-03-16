@@ -1,0 +1,144 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>活动详情</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="{{ url_for('static', filename='css/mui.min.css') }}" rel="stylesheet" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav navs">
+			<a class="mui-action-back"><img src="{{ url_for('static', filename='images/4129.png') }}" />返回</a>
+			<h1 class="mui-title">活动详情</h1>
+		</header>
+		<div class="mui-content">
+			<div class="boxst">
+				<div class="boxst_img">
+					<img src="{{ url_for('static', filename='images/2.png') }}" />
+					<div class="titmee">
+						<p>
+							<span>截止日期：仅剩：</span>
+							<span class="titmest">03</span>
+							<span>天</span>
+							<span class="titmest">03</span>
+							<span>时</span>
+							<span class="titmest">03</span>
+							<span>分</span>
+							<span class="titmest">03</span>
+							<span>秒</span>
+						</p>
+					</div>
+				</div>
+				<div class="boxsts">
+					<div class="boxst_name">
+						<h4>某某某活动名称活动名称活动某某某活动名称活动名称活动某某某活动名称活动名称活动...</h4>
+						<div class="vip_div">
+							<button class="jiage">￥48.00</button>
+							<button class="mvip">vip免费</button>
+							<p>已报名:<span>27/30</span></p>
+						</div>
+					</div>
+					<div class="activsd_titme">
+						<ul class="actid_ul">
+							<li>
+								<a href="#">
+									<label>活动时间</label>
+									<p>2020-02-08</p>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<label>活动地址</label>
+									<p>安顺某某某地区位置</p>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<label>活动发起人</label>
+									<p>某某某</p>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!--活动内容-->
+				<div class="activdt_nr">
+					<ul class="ul_uls">
+						<li class="active">活动内容</li>
+						<li>活动规则</li>
+						<li>其他信息</li>
+					</ul>
+					<div class="ac_lists">
+						<!--活动内容-->
+						<div class="susta">
+							<div class="article_content article_content1">
+								<h5>一、活动宗旨</h5>
+								<p> 企业青年“快乐有约” 区别于传统相亲形式，采用企业会员制，以营造轻松、快乐的交友派对氛围为前提，不定期开展丰富多彩的趣味活动，每期由某企业家出资赞助，将“员工相亲”上升为员工的福利，充分体现企业家对本企业未婚青年男女的关怀，在企业为员工提供创造物质财富平台的基础上，在员工追求有房有车的基础上，企业家尽力为员工创造“有家有快乐的企业文化”...</p>
+							</div>
+							<div class="more_cons">查看全文  <span class="mui-icon mui-icon-arrowdown"></span></div>
+						</div>
+						<!--活动规则-->
+						<div class="susta" style="display: none;">
+							<div class="article_content">
+								<h5>一、活动规则</h5>
+								<p> 企业青年“快乐有约” 区别于传统相亲形式，采用企业会员制，以营造轻松、快乐的交友派对氛围为前提，不定期开展丰富多彩的趣味活动，每期由某企业家出资赞助，将“员工相亲”上升为员工的福利，充分体现企业家对本企业未婚青年男女的关怀，在企业为员工提供创造物质财富平台的基础上，在员工追求有房有车的基础上，企业家尽力为员工创造“有家有快乐的企业文化”...</p>
+							</div>
+						</div>
+						<!--其他信息-->
+						<div class="susta" style="display: none;">
+							<div class="article_content">
+								<h5>一、其他信息</h5>
+								<p> 企业青年“快乐有约” 区别于传统相亲形式，采用企业会员制，以营造轻松、快乐的交友派对氛围为前提，不定期开展丰富多彩的趣味活动，每期由某企业家出资赞助，将“员工相亲”上升为员工的福利，充分体现企业家对本企业未婚青年男女的关怀，在企业为员工提供创造物质财富平台的基础上，在员工追求有房有车的基础上，企业家尽力为员工创造“有家有快乐的企业文化”...</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--报名按钮-->
+			<div style="height: 70px;"></div>
+			<div class="buts">
+				<div class="buts_left">
+					<p>报名费用:<span class="feiyong">￥48.00</span>数量<span>1</span></p>
+				</div>
+				<div class="buts_right">
+					<button>立即报名</button>
+				</div>
+			</div>
+			<!--报名按钮结束-->
+		</div>
+		<script src="{{ url_for('static', filename='js/mui.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+		<script type="text/javascript">
+			$(function() {
+				var slideHeight = 245;
+				var defHeight = $(".article_content1").height();
+				if(defHeight >= slideHeight) {
+					$(".article_content1").css('height', slideHeight + 'px');
+					$(".more_cons").click(function() {
+						var curHeight = $(".article_content1").height();
+						if(curHeight == slideHeight) {
+							$(".article_content1").animate({
+								height: defHeight
+							}, "normal");
+							$(".more_cons").hide()
+						}
+					})
+				}
+				
+				//选项卡
+				$(".ul_uls li").click(function(){
+					$(this).addClass("active").siblings().removeClass("active");
+					var indes=$(this).index();
+					$(".susta").eq(indes).show().siblings().hide();
+				})
+			})
+		</script>
+	</body>
+
+</html>

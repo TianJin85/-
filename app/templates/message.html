@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>{%  block title%} 我的信息{% endblock %}</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="{{ url_for('static', filename='css/mui.min.css') }}" rel="stylesheet" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav navs">
+		    <a class="mui-action-back" href="{{ url_for('view.wechat+index', userid=userid) }}"><img src="{{ url_for('static', filename='images/4129.png')}}" />返回</a>
+		    <h1 class="mui-title">我的信息</h1>
+		</header>
+		<div class="mui-content">
+		    <div class="ren_list">
+				<ul class="ren_list_ul">
+					<li>
+						<a href="{{ url_for('view.wechat+message_details', userid=userid) }}">
+							<div class="imgnames">
+								<img src="{{ url_for('static', filename='images/03.png') }}" />
+							</div>
+							<div class="titmes">
+								<div class="name_time">
+									<h4>刘大哥</h4>
+									<p><span>下午</span><span>14:00</span></p>
+								</div>
+								<div class="xingxi">
+									<p>刘大姐：在吗？可以聊聊吗？</p>
+								</div>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<div class="imgnames">
+								<img src="{{ url_for('static', filename='images/3.png') }}" />
+							</div>
+							<div class="titmes">
+								<div class="name_time">
+									<h4>刘大姐</h4>
+									<p><span>下午</span><span>14:00</span></p>
+								</div>
+								<div class="xingxi">
+									<p>刘大姐：在吗？可以聊聊吗？</p>
+								</div>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div style="height: 50px;"></div>
+			<nav class="mui-bar mui-bar-tab tabs">
+				<a class="mui-tab-item" href="{{ url_for('view.wechat+index', userid=userid) }}">
+					<span class="mui-icon">
+						<img class="shows" src="{{ url_for('static', filename='images/home1.png') }}"/>
+						<img class="hides" src="{{ url_for('static', filename='images/home2.png') }}"/>
+					</span>
+					<span class="mui-tab-label">我的首页</span>
+				</a>
+				<a class="mui-tab-item" href="{{ url_for('view.wechat+search_criteria', userid=userid) }}">
+					<span class="mui-icon">
+						<img class="shows" src="{{ url_for('static', filename='images/search1.png') }}"/>
+					</span>
+					<span class="mui-tab-label">条件搜索</span>
+				</a>
+				<a class="mui-tab-item mui-active">
+					<span class="mui-icon">
+						<img class="shows" src="{{ url_for('static', filename='images/chat1.png') }}"/>
+						<img class="hides" src="{{ url_for('static', filename='images/chat2.png') }}"/>
+					</span>
+					<span class="mui-tab-label">我的信息</span>
+				</a>
+				<a class="mui-tab-item" href="{{ url_for('view.wechat+personal', userid=userid) }}">
+					<span class="mui-icon">
+						<img class="shows" src="{{ url_for('static', filename='images/person1.png') }}"/>
+						<img class="hides" src="{{ url_for('static', filename='images/person2.png') }}"/>
+					</span>
+					<span class="mui-tab-label">个人中心</span>
+				</a>
+			</nav>
+			<div class="tanc" style="display: block;">
+				<div class="tanc_box">
+					<div class="tanc_title">
+						<h4>提示</h4>
+						<p>您的当前还不是，查看当前信息 请注册后查询，VIP会员免费！</p>
+					</div>
+					<div class="btn_tis">
+						<button class="btn_qx">取消</button>
+						<button class="btn_ok">确定</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="{{ url_for('static', filename='js/mui.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-2.1.0.js') }}" ></script>
+		<script type="text/javascript">
+			mui.init()
+			mui('body').on('tap','a',function(){
+				window.top.location.href=this.href;
+			})
+			$(".btn_qx").click(function(){
+				$(".tanc").hide()
+			});
+		</script>
+	</body>
+
+</html>

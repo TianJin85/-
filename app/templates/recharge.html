@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>vip充值</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="{{ url_for('static', filename='css/mui.min.css') }}" rel="stylesheet" />
+		<link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav navs">
+			<a class="mui-action-back"><img src="{{ url_for('static', filename='images/4129.png') }}" />返回</a>
+			<h1 class="mui-title">VIP充值</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mainsts">
+				<form class="formse">
+					<div class="fiws">
+						<p>请选择充值余额</p>
+						<ul class="fiws_ul">
+							<li>开通相亲包月vip 50元/月</li>
+							<li>开通相亲季度vip 550元/季度</li>
+							<li>开通相亲包年vip 1500元/年</li>
+							<li>购买单次看资料特权 5元/次</li>
+						</ul>
+					</div>
+					<div class="fiws1">
+						<p>请选择充值方式</p>
+						<ul class="mui-table-view mui-table-view-radio radils">
+							<li class="mui-table-view-cell">
+								<a class="mui-navigate-right">
+									<img src="{{ url_for('static', filename='images/wx.png') }}" /> 微信支付
+								</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a class="mui-navigate-right">
+									<img src="{{ url_for('static', filename='images/ye.png')}}" /> 余额支付
+								</a>
+							</li>
+						</ul>
+						<div class=" zhifse" style="display: none;">
+							<img src="{{ url_for('static', filename='images/4153.png') }}" />
+							<p id="info">当前余额</p>
+							<p class="yuans">2000元</p>
+						</div>
+					</div>
+					<div class="kaitong">
+						<div class="subit">
+							<button type="submit">立即开通</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<script src="{{ url_for('static', filename='js/mui.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-2.1.0.js') }}"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+		<script>
+			$(".radils li:eq(1)").click(function() {
+				$(".zhifse").show()
+			})
+			$(".radils li:eq(0)").click(function() {
+				$(".zhifse").hide()
+			})
+			$(".fiws_ul li").click(function() {
+				$(this).addClass("active").siblings().removeClass("active")
+			})
+		</script>
+	</body>
+
+</html>

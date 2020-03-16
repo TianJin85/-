@@ -1,0 +1,124 @@
+{% extends 'enroll.html' %}
+{% block title %}
+
+{% endblock %}
+{% block h1 %}
+    {{ super() }}
+    <h1 class="mui-title" id="userid" name="{{ data }}"> 修改信息</h1>
+
+{% endblock %}
+{% block js %}
+    <script>
+        $(document).ready(function(){
+                $.post('{{ url_for("view.wechat+messinfo") }}',
+                {
+                  userid:$("#userid").attr("name"),
+                  csrfmiddlewaretoken:'{{ csrf_token  }}'
+                },
+                function(data,status){
+                   if ("success"){
+
+                        var username = $("#username").val(data[0]["username"])         // 用户名称
+                        var cardid = $("#cardid").val(data[0]["census"])            // 身份证号码
+                        var census= $("#cityResult3").text(data[0]["census"])         // 户籍所在地
+                        var stature = $("#stature").val(data[0]["stature"])           // 身高
+                        var weight = $("#weight").val(data[0]["weight"])             // 体重
+                        var wechat = $("#wechat").val(data[0]["wechat"])             // 微信号
+                        var qq = $("#qq").val(data[0]["qq"])                     // QQ
+                        var school = $("#school").val(data[0]["school"])              // 毕业学校
+                        var education = $('#education option:selected').val(data[0]["education"]); // 学历
+                        var workunit = $("#workunit").val(data[0]["workunit"])          // 工作单位
+                        var occupation = $("#occupation").val(data[0]["occupation"])      // 职业
+                        var profession = $("#profession").val(data[0]["profession"])      // 职业性质
+                        var monthlys = data[0]["monthly"].split("-")
+                        var monthly = $("#monthly1").val(monthlys[0])
+                        var monthly2 = $("#monthly2").val(monthlys[1]) // 月薪范围
+                        var member = $("#member").val(data[0]["member"])             // 家庭成员
+                        var housing = data[0]["housing"]                          // 住房情况
+
+                        if (housing =="有"){
+                            $("#yes1").attr("checked", "checked")
+                        }else (
+                            $("#nos1").attr("checked", "checked")
+                        )
+
+                        var vehicle = data[0]["vehicle"]
+
+                        if (vehicle=="有"){
+                            $("#yes").attr("checked", "checked")
+                        }else {
+                            $("#nos").attr("checked", "checked")
+                        }
+
+
+                        var rest = $("#rest").val(data[0]["rest"])                 // 其他
+
+                        /**
+                         * 择偶要求
+                         * */
+                        var marriage =  data[1]["marriage"]
+
+                        if (marriage=="未婚"){
+                            $("#wei").attr("checked", "checked")
+                        }else if (marriage="离异") {
+                            $("#liyi").attr("checked", "checked")
+                        }else if (marriage=="离异"){
+                            $("#soi").attr("checked", "checked")
+                        }
+
+                        var age = data[1]["age"].split("-")
+                        var age1 = $("#age1").val(age[0])
+                        var age2 = $("#age2").val(age[1])  // 年龄
+                        var ze_stature = $("#ze_stature").val(data[1]["stature"])            // 最低身高要求
+
+                        var ze_weight = data[1]["weight"].split("-")
+                        var ze_weight1 = $("#ze_weight1").val(ze_weight[0])
+                        var ze_weight1 = $("#ze_weight2").val(ze_weight[1])
+                        var ze_monthly = data[1]["monthly"]
+                        var ze_monthly1 = $("#ze_monthly1").val(ze_monthly[0])
+                        var ze_monthly2 = $("#ze_monthly2").val(ze_monthly[1])
+                        var ze_housing = data[1]["housing"]             // 住房要求
+
+                        if(ze_housing=="有"){
+                            $("#yess").attr("checked", "checked")
+                        }else {
+                            $("#nost").attr("checked", "checked")
+                        }
+
+
+                        var ze_vehicle = data[1]["vehicle"]        // 车辆要求
+                        if(ze_vehicle){
+                            $("#yess1").attr("checked", "checked")
+                        }else {
+                            $("#nost1").attr("checked", "checked")
+                        }
+
+                        var ze_children = data[1]["children"]       // 子女要求
+
+                        if(ze_children=="有"){
+                            $("#yess3").attr("checked", "checked")
+                        }else {
+                            $("#nost3").attr("checked", "checked")
+                        }
+
+                        var ze_census = $("#cityResult4").text(data[1]["census"])    // 地区要求
+                        var ze_rests = $("#ze_pests").val(data[1]["rests"])         //  其他要求
+                        var phone  = $("#phone").val(data[0]["phone"])              // 电话号码
+                                         // 图片数组
+
+
+                        var images_id = new Array(3)
+
+                        $('#father li div img').each(function(index) { images_id[index]=this.id });
+
+
+                        var images_src1 = $("#"+images_id[0]).attr("src")
+                        var images_src2 = $("#"+images_id[1]).attr("src")
+                        var images_src3 = $("#"+images_id[2]).attr("src")
+                       alert("数据：" + data[0]["username"] + "\n状态：" + status);
+                   }
+                });
+        });
+
+    </script>
+{% endblock %}

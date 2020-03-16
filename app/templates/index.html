@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>安顺之恋</title>
+		<script src="{{ url_for('static', filename='js/mui.min.js') }}"></script>
+		<link href="{{ url_for('static', filename='css/mui.min.css') }}" rel="stylesheet" />
+		<link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" />
+		<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/jquery.SuperSlide.2.1.1.js') }}"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<div class="henter">
+				<div class="bannder">
+					<div class="fullSlide">
+						<div class="bd">
+							<ul>
+								<li>
+									<a href="#"><img src="{{ url_for('static', filename='images/2.png') }}" /></a>
+								</li>
+								<li>
+									<a href="#"><img src="{{ url_for('static', filename='images/2.png') }}" /></a>
+								</li>
+							</ul>
+						</div>
+						<div class="hd">
+							<ul></ul>
+						</div>
+					</div>
+					<script type="text/javascript">
+						jQuery(".fullSlide").slide({
+							titCell: ".hd ul",
+							mainCell: ".bd ul",
+							effect: "fold",
+							autoPlay: true,
+							autoPage: true,
+							trigger: "click",
+						})
+					</script>
+				</div>
+				<!--<img src="images/2.png" />-->
+				<div class="dizis">
+					<div class="anshun">
+						<span>安顺</span>
+						<img src="{{ url_for('static', filename='images/1531.png') }}" />
+					</div>
+					<div class="sousuo">
+						<div class="mui-input-row mui-search">
+							<input type="search" class="mui-input-clear" placeholder="请输入对象编号进行搜索">
+						</div>
+					</div>
+					<div class="shouchang">
+						<div class="imgst">
+							<img class="" src="{{ url_for('static', filename='images/1532.png') }}" />
+						</div>
+						<div class="posia">
+							<ul class="posia_ul">
+								<li>
+									<a href="#"><img src="{{ url_for('static', filename='images/19493.png') }}" /><span>会员服务</span></a>
+								</li>
+								<li>
+									<a href="#"><img src="{{ url_for('static', filename='images/4257.png') }}" /><span>我的积分</span></a>
+								</li>
+								<li>
+									<a href="#"><img src="{{ url_for('static', filename='images/4304.png') }}" /><span>我的余额</span></a>
+								</li>
+								<li>
+									<a href="#"><img src="{{ url_for('static', filename='images/19267.png') }}" /><span>我的收藏</span></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="danhand">
+				<ul class="danhand_ul">
+					<li>
+						<a href="#"><img src="{{ url_for('static', filename='images/4331.png') }}" />
+							<p>男生</p>
+						</a>
+					</li>
+					<li>
+						<a href="#"><img src="{{ url_for('static', filename='images/4332.png') }}" />
+							<p>女生</p>
+						</a>
+					</li>
+					<li>
+						<a href="{{ url_for('view.wechat+activity', userid=result[0]["userinfo"]["userid"])}}"><img src="{{ url_for('static', filename='images/4333.png') }}" />
+							<p>活动</p>
+						</a>
+					</li>
+					<li>
+						<a href="{{ url_for('view.wechat+enroll', userid=result[0]["userinfo"]["userid"])}}"><img src="{{ url_for('static', filename='images/4293.png') }}" />
+							<p>脱单</p>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="meiritj">
+				<h4>每日推荐</h4>
+				<a href="#">我要选择 <span style="font-size: 16px;" class="mui-icon mui-icon-arrowright"></span></a>
+			</div>
+			<div class="lists">
+				<ul class="lists_ul">
+					{% for item in result %}
+					<li>
+						<div onclick="openDetail({{item['id']}})" href="{{ url_for('view.wechat+personal_details', userid=item["id"]) }}">
+							<div class="rens">
+								<div class="rens_img"><img src="{{ item["images"] }}" /></div>
+								<div class="rens_text">
+									<div class="names">
+										<h5>{{ item["username"] }}  <img src="{{ url_for('static', filename='images/4334.png') }}"/></h5>
+										<span>{{ item["census"] }}</span>
+									</div>
+									<div class="xinxis">
+										<img src="{{ url_for('static', filename='images/3288.png') }}" />
+										<span>{{ item["age"] }}岁</span>
+										<span>{{ item["education"] }}</span>
+										<span>{{ item["occupation"] }}</span>
+										<span>{{ item["stature"] }}cm</span>
+										<span>{{ item["monthly"] }}</span>
+									</div>
+									<div class="bianhao">
+										<div class="item">
+											<span class="label">编号</span>：
+											<span class="value value1">00000{{ item["id"] }}</span>
+										</div>
+										<div class="item">
+											<span class="label">职业性质</span>：
+											<span class="value">{{ item["profession"] }}</span>
+										</div>
+									</div>
+									<div class="xiesg">
+										<p>{{ item["housing"] }}房</p>
+										<p>{{ item["vehicle"] }}车</p>
+									</div>
+								</div>
+							</div>
+							<div class="jinalis">
+								<img src="{{ url_for('static', filename="images/anger.png") }}" />
+								<p>{{ item["rest"] }}</p>
+							</div>
+						</div>
+					</li>
+                    {% endfor %}
+					
+				</ul>
+			</div>
+			<div style="height: 50px;"></div>
+			<nav class="mui-bar mui-bar-tab tabs">
+				<a class="mui-tab-item mui-active" href="{{ url_for('view.wechat+index', userid=result[0]["userinfo"]["userid"]) }}">
+					<span class="mui-icon">
+						<img class="shows" src="{{ url_for('static', filename='images/home1.png') }}"/>
+						<img class="hides" src="{{ url_for('static', filename='images/home2.png') }}"/>
+					</span>
+					<span class="mui-tab-label">我的首页</span>
+				</a>
+				<a class="mui-tab-item" href="{{ url_for('view.wechat+search_criteria', userid=result[0]["userinfo"]["userid"]) }}">
+					<span class="mui-icon">
+						<img class="shows" src="{{ url_for('static', filename='images/search1.png') }}"/>
+					</span>
+					<span class="mui-tab-label">条件搜索</span>
+				</a>
+				<a class="mui-tab-item" href={{ url_for('view.wechat+message', userid=result[0]["userinfo"]["userid"]) }}>
+					<span class="mui-icon">
+						<img class="shows" src="{{ url_for('static', filename='images/chat1.png') }}"/>
+						<img class="hides" src="{{ url_for('static', filename='images/chat2.png') }}"/>
+					</span>
+					<span class="mui-tab-label">我的信息</span>
+				</a>
+				<a class="mui-tab-item" href="{{ url_for('view.wechat+personal', userid=result[0]["userinfo"]["userid"]) }}">
+					<span class="mui-icon">
+						<img class="shows" src="{{ url_for('static', filename='images/person1.png') }}"/>
+						<img class="hides" src="{{ url_for('static', filename='images/person2.png') }}"/>
+					</span>
+					<span class="mui-tab-label">个人中心</span>
+				</a>
+			</nav>
+			<!--注册弹窗-->
+			<div class="tanc" style="display: none;">
+				<div class="tanc_box" style="top: 20%;">
+					<div class="ta_img">
+						<img src="{{ url_for('static', filename='images/4126.png') }}"/>
+						<div class="ta_title">
+							<h4>立即注册</h4>
+							<p>注册查看更多资料信息！</p>
+						</div>
+					</div>
+					<form class="form_group">
+					    <div class="groups">
+					        <input type="text"  placeholder="请输入手机账号">
+					        <img src="{{ url_for('static', filename='images/2895.png') }}"/>
+					    </div>
+					    <div class="groups">
+					        <input type="text" class="yanzhem"  placeholder="请输入验证码">
+					        <button>获取验证码</button>
+					    </div>
+					    <div class="groups">
+					        <input type="password"  placeholder="请输入新密码">
+					        <img src="{{ url_for('static', filename='images/3295.png') }}"/>
+					    </div>
+					    <div class="groupss">
+					    	<button type="submit">注册成为会员</button>
+					    </div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			mui('body').on('tap', 'a', function() {
+				window.top.location.href = this.href;
+			})
+			mui('.shouchang').on('tap', '.imgst', function(event) {
+				if($(".posia").is(":hidden")) {
+					$(".posia").show();
+				} else {
+					$(".posia").hide();
+				}
+			})
+			function openDetail(uid){
+				console.log(uid)
+				location.href="/view/wechat/personal_details?uid="+uid
+			}
+		</script>
+{#        <script>#}
+{#            $(document).ready(function(){#}
+{#				$.ajax({#}
+{#					type: "get",#}
+{#					url: '{{ url_for("view.wechat+indexinfo") }}',#}
+{#					async: true,#}
+{#					dataType: 'json',#}
+{#					success:function(msg){#}
+{#						console.log(msg)#}
+{#						var lists_uls = ''#}
+{#						for(var i=0;i<msg.length;i++){#}
+{#							if(msg[i][0].sex == "男"){#}
+{#								lists_uls +='<li>'+#}
+{#						'<a href={{ url_for("view.wechat+personal_details", userid="'{{userid}}'") }}>'+#}
+{#							'<div class="rens">'+#}
+{#								'<div class="rens_img"><img src="'+msg[i][0].images+'" /></div>'+#}
+{#								'<div class="rens_text">'+#}
+{#									'<div class="names">'+#}
+{#										'<h5>'+msg[i][0].username+'<img src="{{ url_for("static", filename="images/4334.png") }}"/></h5>'+#}
+{#										'<span>'+msg[i][0].census+'</span>'+#}
+{#									'</div>'+#}
+{#									'<div class="xinxis">'+#}
+{#										'<img src="{{ url_for("static", filename="images/03288.png") }}" />'+#}
+{#										'<span>'+msg[i][0].age+'岁</span>'+#}
+{#										'<span>'+msg[i][0].education+'</span>'+#}
+{#										'<span>'+msg[i][0].stature+'cm</span>'+#}
+{#										'<span>'+msg[i][0].monthly+'元</span>'+#}
+{#									'</div>'+#}
+{#									'<div class="bianhao">'+#}
+{#										'<div class="item">'+#}
+{#											'<span class="label">编号</span>：'+#}
+{#											'<span class="value value1">00000'+msg[i][0].id+'</span>'+#}
+{#										'</div>'+#}
+{#										'<div class="item">'+#}
+{#											'<span class="label">职业性质</span>：'+#}
+{#											'<span class="value">'+msg[i][0].occupation+'</span>'+#}
+{#										'</div>'+#}
+{#									'</div>'+#}
+{#									'<div class="xiesg">'+#}
+{#										'<p>'+msg[i][0].housing+'房</p>'+#}
+{#										'<p>'+msg[i][0].vehicle+'车</p>'+#}
+{#									'</div>'+#}
+{#								'</div>'+#}
+{#							'</div>'+#}
+{#							'<div class="jinalis">'+#}
+{#								'<img src="{{ url_for("static", filename="images/anger.png") }}" />'+#}
+{#								'<p>'+msg[i][0].rest+'</p>'+#}
+{#							'</div>'+#}
+{#						'</a>'+#}
+{#					'</li>'#}
+{#							}else{#}
+{#								lists_uls +='<li>'+#}
+{#						'<a href="{{ url_for("view.wechat+personal_details", userid=userid) }}">'+#}
+{#							'<div class="rens">'+#}
+{#								'<div class="rens_img"><img src="'+msg[i][0].images+'" /></div>'+#}
+{#								'<div class="rens_text">'+#}
+{#									'<div class="names">'+#}
+{#										'<h5>'+msg[i][0].username+'<img src="{{ url_for("static", filename="images/4334.png") }}"/></h5>'+#}
+{#										'<span>'+msg[i][0].census+'</span>'+#}
+{#									'</div>'+#}
+{#									'<div class="xinxis">'+#}
+{#										'<img src="{{ url_for("static", filename="images/3288.png") }}" />'+#}
+{#										'<span>'+msg[i][0].age+'岁</span>'+#}
+{#										'<span>'+msg[i][0].education+'</span>'+#}
+{#										'<span>'+msg[i][0].stature+'cm</span>'+#}
+{#										'<span>'+msg[i][0].monthly+'元</span>'+#}
+{#									'</div>'+#}
+{#									'<div class="bianhao">'+#}
+{#										'<div class="item">'+#}
+{#											'<span class="label">编号</span>：'+#}
+{#											'<span class="value value1">00000'+msg[i][0].id+'</span>'+#}
+{#										'</div>'+#}
+{#										'<div class="item">'+#}
+{#											'<span class="label">职业性质</span>：'+#}
+{#											'<span class="value">'+msg[i][0].occupation+'</span>'+#}
+{#										'</div>'+#}
+{#									'</div>'+#}
+{#									'<div class="xiesg">'+#}
+{#										'<p>有房</p>'+#}
+{#										'<p>有车</p>'+#}
+{#									'</div>'+#}
+{#								'</div>'+#}
+{#							'</div>'+#}
+{#							'<div class="jinalis">'+#}
+{#								'<img src="{{ url_for("static", filename="images/anger.png") }}" />'+#}
+{#								'<p>'+msg[i][0].rest+'</p>'+#}
+{#							'</div>'+#}
+{#						'</a>'+#}
+{#					'</li>'#}
+{#							}#}
+{#							#}
+{#						}#}
+{#						$(".lists_ul").html(lists_uls)#}
+{#					},#}
+{#					error:function(){#}
+{#						consoli.log("网络错误")#}
+{#					}#}
+{#				})#}
+{#                // $.post('{{ url_for("view.wechat+indexinfo") }}',#}
+{#                //     {#}
+{#                //       name:"Donald Duck",#}
+{#                //       city:"Duckburg",#}
+{#                //       csrfmiddlewaretoken:'{{ csrf_token  }}'#}
+{#                //     },#}
+{#                //     function(data,status){#}
+{#				// 		console.log(data)#}
+{#                //       alert("数据：" + data + "\n状态：" + status);#}
+{#                // });#}
+{#            });#}
+{#        </script>#}
+	</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>消费记录</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="{{ url_for('static', filename='css/mui.min.css') }}" rel="stylesheet" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav navs">
+			<a class="mui-action-back"><img src="{{ url_for('static', filename='images/4129.png') }}"/>返回</a>
+			<h1 class="mui-title">消费记录</h1>
+		</header>
+		<div class="mui-content">
+			<div class="consum">
+				<ul class="consum_ul">
+					<li>
+						<a href="#">
+							<h4>消费项目名称</h4>
+							<p>时间:2020/02/05 12:00</p>
+							<div class="xiangjine">
+								<p>￥<span>200</span></p>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<h4>消费项目名称</h4>
+							<p>时间:2020/02/05 12:00</p>
+							<div class="xiangjine">
+								<p>￥<span>200</span></p>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<h4>消费项目名称</h4>
+							<p>时间:2020/02/05 12:00</p>
+							<div class="xiangjine">
+								<p>￥<span>200</span></p>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<script src="{{ url_for('static', filename='js/mui.min.js') }}"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+	</body>
+
+</html>

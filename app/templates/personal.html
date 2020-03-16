@@ -1,0 +1,191 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>个人中心</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="{{ url_for('static', filename='css/mui.min.css') }}" rel="stylesheet" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav navs">
+			<h1 class="mui-title">个人中心</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mains">
+				<img src="{{ url_for('static', filename='images/4251.png') }}" />
+				<div class="xiuggai">
+					<a href="{{ url_for('view.wechat+upenroll', userid=mess_data.userid) }}">
+						<img src="{{ url_for('static', filename='images/19435.png') }}" />
+						<p>修改信息</p>
+					</a>
+				</div>
+				<div class="namest_name">
+					<div class="namests">
+						<div class="img_tx">
+							<img src="{{ mess_data.images }}" />
+						</div>
+						<div class="img_name">
+							<div class="name_namet">
+								<h4>{{ mess_data.username }} <img src="{{ url_for('static', filename='images/4334.png') }}"/></h4>
+								<p>{{ mess_data.userid }}</p>
+							</div>
+							<div class="name_p">
+								<p>
+									<img src="{{ url_for('static', filename='images/3288.png') }}" />
+									<span>{{ mess_data.age }}岁</span>
+									<span>{{ mess_data.education }}</span>
+									<span>{{ mess_data.occupation }}</span>
+									<span>{{ mess_data.stature }}cm</span>
+									<span>{{ mess_data.weight }}kg</span>
+								</p>
+							</div>
+						</div>
+						<div style="clear: both;"></div>
+					</div>
+					<div class="names_jif">
+						<ul class="names_jif_ul">
+							<li>
+								<a href="#">
+									<img src="{{ url_for('static', filename='images/4306.png') }}" />
+									<p>我的收藏</p>
+									<p class="shouc">12</p>
+								</a>
+							</li>
+							<li>
+								<a href="{{ url_for('view.wechat+recharge') }}">
+									<img src="{{ url_for('static', filename='images/4305.png') }}" />
+									<p>我的余额</p>
+									<p class="qiand">￥150.00</p>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<img src="{{ url_for('static', filename='images/4303.png') }}" />
+									<p>我的积分</p>
+									<p class="jf">2000积分</p>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="list_names">
+				<ul class="mui-table-view list_names_ul">
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right">
+							<img src="{{ url_for('static', filename='images/19493.png') }}"/>
+							<p>会员服务</p>
+						</a>
+					</li>
+				</ul>
+				<ul class="mui-table-view list_names_ul">
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right" href="{{ url_for('view.wechat+order') }}">
+							<img src="{{ url_for('static', filename='images/4264.png') }}"/>
+							<p>我的订单</p>
+						</a>
+					</li>
+				</ul>
+				<ul class="mui-table-view list_names_ul">
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right">
+							<img src="{{ url_for('static', filename='images/19444.png') }}"/>
+							<p>查看过微信的人</p>
+						</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right" href="{{ url_for('view.wechat+see_qq', userid=mess_data.userid) }}">
+							<img src="{{ url_for('static', filename='images/19445.png') }}"/>
+							<p>查看过QQ的人</p>
+						</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right">
+							<img src="{{ url_for('static', filename='images/19446.png') }}"/>
+							<p>查看过电话的人</p>
+						</a>
+					</li>
+				</ul>
+				<ul class="mui-table-view list_names_ul">
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right">
+							<img src="{{ url_for('static', filename='images/4265.png') }}"/>
+							<p>关于我们</p>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div style="height: 50px;"></div>
+			<nav class="mui-bar mui-bar-tab tabs">
+				<a class="mui-tab-item" href="{{ url_for("view.wechat+index", userid=mess_data.userid) }}">
+					<span class="mui-icon">
+						<img class="shows" src="{{ url_for('static', filename='images/home1.png') }}"/>
+						<img class="hides" src="{{ url_for('static', filename='images/home2.png') }}"/>
+					</span>
+					<span class="mui-tab-label">我的首页</span>
+				</a>
+				<a class="mui-tab-item" href="{{ url_for('view.wechat+search_criteria', userid=mess_data.userid) }}">
+					<span class="mui-icon">
+						<img class="shows" src="{{ url_for('static', filename='images/search1.png') }}"/>
+					</span>
+					<span class="mui-tab-label">条件搜索</span>
+				</a>
+				<a class="mui-tab-item" href="{{ url_for('view.wechat+message', userid=mess_data.userid) }}">
+					<span class="mui-icon">
+						<img class="shows" src="{{ url_for('static', filename='images/chat1.png') }}"/>
+						<img class="hides" src="{{ url_for('static', filename='images/chat2.png') }}"/>
+					</span>
+					<span class="mui-tab-label">我的信息</span>
+				</a>
+				<a class="mui-tab-item mui-active" href="{{ url_for('view.wechat+personal', userid=mess_data.userid) }}">
+					<span class="mui-icon">
+						<img class="shows" src="{{ url_for('static', filename='images/person1.png') }}"/>
+						<img class="hides" src="{{ url_for('static', filename='images/person2.png') }}"/>
+					</span>
+					<span class="mui-tab-label">个人中心</span>
+				</a>
+			</nav>
+			<div class="tanc" style="display: block;">
+				<div class="tanc_box">
+					<div class="tanc_title">
+						<h4>提示</h4>
+						<p>您的当前还不是会员， 是否立即充值服务！</p>
+					</div>
+					<div class="btn_tis">
+						<button class="btn_qx">取消</button>
+						<button class="btn_ok">确定</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="{{ url_for('static', filename='js/mui.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-2.1.0.js') }}" ></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+		<script type="text/javascript">
+			$(".btn_qx").click(function(){
+				$(".tanc").hide()
+			});
+			mui('body').on('tap', 'a', function() {
+				window.top.location.href = this.href;
+			})
+			$.ajax({
+				type: "get",
+					url: '{{ url_for("view.wechat+personal") }}',
+					async: true,
+					dataType: 'json',
+					success:function(msg){
+						console.log(msg)
+					},
+					error:function(){
+						console.log("网络错误")
+					}
+			})
+		</script>
+	</body>
+
+</html>

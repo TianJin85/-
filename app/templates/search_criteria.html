@@ -1,0 +1,318 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>搜索条件</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+
+		<!--<link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">-->
+		<link href="{{ url_for('static', filename='css/mui.min.css') }}" rel="stylesheet" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/select-mania.css') }}" />
+		<link href="{{ url_for('static', filename='picker/mui.picker.css') }}" rel="stylesheet" />
+		<link href="{{ url_for('static', filename='picker/mui.poppicker.css') }}" rel="stylesheet" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav navs">
+			<a class="mui-action-back"><img src="{{ url_for('static', filename='images/4129.png') }}" />返回</a>
+			<h1 class="mui-title">搜索条件</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mainst">
+				<img src="{{ url_for('static', filename='images/4234.png') }}" />
+				<form class="mui-input-group form" id="userInfo">
+					<div class="forms">
+						<div class="mui-input-row div_list">
+							<label>性别</label>
+							<div class="xiansd xiansdt" id="sexs">
+								<div class="xiansd1 input-radio">
+									<input name="checkbox1" id="boy" value="男" type="radio" checked="checked">
+									<label for="boy">男生</label>
+
+								</div>
+								<div class="xiansd2 input-radio">
+									<input name="checkbox1" id="girl" value="女" type="radio">
+									<label for="girl">女生</label>
+								</div>
+							</div>
+						</div>
+						<div class="mui-input-row div_list">
+							<label>年龄</label>
+							<div class="xiansd">
+								<input type="number" id="ages1" placeholder="20" />
+								<p>至</p><input type="number" id="ages2" placeholder="25" />
+							</div>
+							<div class="xuanshu">
+								<div class="xiansd1 input-radio">
+									<input id="bux" value="不限" type="radio">
+									<label for="bux">不限</label>
+
+								</div>
+							</div>
+						</div>
+						<div class="mui-input-row div_list">
+							<label>身高</label>
+							<div class="xiansd">
+								<input type="number" id="sg_heigh1" placeholder="169" />
+								<p>至</p><input type="number" id="sg_heigh2" placeholder="185" />
+							</div>
+							<div class="xuanshu">
+								<div class="xiansd1 input-radio">
+									<input id="bux1" value="不限" type="radio">
+									<label for="bux1">不限</label>
+
+								</div>
+							</div>
+						</div>
+						<div class="mui-input-row div_list">
+							<label>学历</label>
+							<div class="xiansd">
+								<div class="container" style="width: 100%;">
+									<select id="education" class="demo-4">
+										<option value="专科">专科</option>
+										<option value="本科">本科</option>
+										<option value="研究生">研究生</option>
+										<option value="教授">教授</option>
+									</select>
+
+								</div>
+							</div>
+							<div class="xuanshu">
+								<div class="xiansd1 input-radio">
+									<input id="bux2" value="不限" type="radio">
+									<label for="bux2">不限</label>
+
+								</div>
+							</div>
+						</div>
+						<div class="mui-input-row div_list">
+							<label>月薪</label>
+							<div class="xiansd">
+								<input type="number" id="ze_monthly1" placeholder="5000" />
+								<p>至</p><input type="number" id="ze_monthly2" placeholder="10000" />
+							</div>
+							<div class="xuanshu">
+								<div class="xiansd1 input-radio">
+									<input id="bux2" value="不限" type="radio">
+									<label for="bux2">不限</label>
+
+								</div>
+							</div>
+						</div>
+						<div class="mui-input-row div_list">
+							<label>职业性质</label>
+							<div class="xiansd">
+								<div class="container" style="width: 100%;">
+									<select id="poccupation" class="demo-4">
+										<option value="sx">请选择职业性质</option>
+										<option value="私企">私企</option>
+										<option value="其他">其他</option>
+									</select>
+
+								</div>
+							</div>
+							<div class="xuanshu">
+								<div class="xiansd1 input-radio">
+									<input id="bux3" value="不限" type="radio">
+									<label for="bux3">不限</label>
+
+								</div>
+							</div>
+						</div>
+						<div class="mui-input-row div_list">
+							<label>住房情况</label>
+							<div class="xiansd">
+								<div class="container" style="width: 100%;">
+									<select id="housing" class="demo-4">
+										<option value="sx">请选择住房情况</option>
+										<option value="自家房">自家房</option>
+										<option value="租房">租房</option>
+										<option value="其他">其他</option>
+									</select>
+
+								</div>
+							</div>
+							<div class="xuanshu">
+								<div class="xiansd1 input-radio">
+									<input id="bux4" value="不限" type="radio">
+									<label for="bux4">不限</label>
+
+								</div>
+							</div>
+						</div>
+						<div class="mui-input-row div_list">
+							<label>婚恋情况</label>
+							<div class="xiansd">
+								<div class="container" style="width: 100%;">
+									<select id="marriage" class="demo-4">
+										<option value="sx">请选择婚恋情况</option>
+										<option value="单身">单身</option>
+										<option value="离异">离异</option>
+									</select>
+
+								</div>
+							</div>
+							<div class="xuanshu">
+								<div class="xiansd1 input-radio">
+									<input id="bux5" value="不限" type="radio">
+									<label for="bux5">不限</label>
+
+								</div>
+							</div>
+						</div>
+						<div class="mui-input-row div_list">
+							<label>所属地区</label>
+							<div class="xiansd">
+								<div class="container" style="width: 100%;">
+									<div class="diq" id="showCityPicker3">
+										<div class="button" id="cityResult3"><p id="cityResult3">请选择所属地区</p></div>
+										<button></button>
+									</div>
+
+								</div>
+							</div>
+							<div class="xuanshu">
+								<div class="xiansd1 input-radio">
+									<input id="bux5" value="不限" type="radio">
+									<label for="bux5">不限</label>
+
+								</div>
+							</div>
+						</div>
+						<div class="mui-input-row div_list">
+							<label>车辆情况</label>
+							<div class="xiansd xiansdt" id="vehicle">
+								<div class="xiansd1 input-radio">
+									<input name="checkbox2" id="yes" value="有" type="radio" checked="checked">
+									<label for="yes">有</label>
+
+								</div>
+								<div class="xiansd2 input-radio">
+									<input name="checkbox2" id="nos" value="女" type="radio">
+									<label for="nos">无</label>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<div class="subit">
+						<a href="javascript:" id="saveUserInfo">立即搜索</a>
+					</div>
+				</form>
+			</div>
+			<div class="tanc" style="display: block;">
+				<div class="tanc_box">
+					<div class="tanc_title">
+						<h4>提示</h4>
+						<p>您当前还不是会员，无法使用搜素功能！ 请入住成为会员</p>
+					</div>
+					<div class="btn_tis">
+						<button class="btn_qx">取消</button>
+						<button class="btn_ok">确定</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="{{ url_for('static', filename='js/mui.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-1.11.0.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/select-mania.js') }}"></script>
+		<script src="{{ url_for('static', filename='picker/mui.picker.js') }}"></script>
+		<script src="{{ url_for('static', filename='picker/mui.poppicker.js') }}"></script>
+		<script src="{{ url_for('static', filename='picker/city.data-3.js') }}" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+		<script type="text/javascript" >
+			$("#saveUserInfo").click(function(){
+
+			 var formArray=	$("#sexs input:checked ").val();
+			 var ages = $("#ages1").val() + "-"+ $("#ages2").val();
+			 var sg_height = $("#sg_heigh1").val() +"-"+$("#sg_heigh2").val();
+			 var education = $('#education option:selected').val();
+			 var ze_monthly = $("#ze_monthly1").val() +"-"+$("#ze_monthly2").val();//月薪
+			 var poccupation =$('#poccupation option:selected').val();
+			 var housing = $('#housing option:selected').val();
+			 var marriage = $('#marriage option:selected').val();
+			 console.log(marriage)
+			 var ze_census = $("#cityResult3").text()    // 地区要求
+			 var vehicle=	$("#vehicle input:checked ").val();
+			$.ajax({
+				type: "get",
+					url: '{{ url_for("view.wechat+search_criteria") }}',
+					async: true,
+					dataType: 'json',
+					data:{
+						sex:formArray,
+						age:ages,
+						ze_stature:sg_height,
+						education:education,
+						ze_monthly:ze_monthly,
+						profession:poccupation,
+						housing:housing,
+						marriage:marriage,
+						census:ze_census,
+						vehicle:vehicle
+					},
+					success:function(msg){
+						console.log(msg);
+					},
+					error:function(){
+						console.log("网络错误")
+					}
+			})
+			})
+		</script>
+		<script type="text/javascript">
+			$('.demo-4').selectMania({
+				themes: ['green'],
+				placeholder: 'Please select me!'
+			});
+			$(".btn_qx").click(function(){
+				$(".tanc").hide()
+			});
+		</script>
+		<script>
+			(function($, doc) {
+				$.init();
+				$.ready(function() {
+					/**
+					 * 获取对象属性的值
+					 * 主要用于过滤三级联动中，可能出现的最低级的数据不存在的情况，实际开发中需要注意这一点；
+					 * @param {Object} obj 对象
+					 * @param {String} param 属性名
+					 */
+					var _getParam = function(obj, param) {
+						return obj[param] || '';
+					};
+					//普通示例
+
+					var picker = new mui.PopPicker({
+						layer: 3
+					});
+					var showCityPickerButton = doc.getElementById('showCityPicker3');
+					var cityResult3 = doc.getElementById('cityResult3');
+					picker.setData(cityData3)
+					picker.pickers[0].setSelectedIndex(23);
+					picker.pickers[1].setSelectedIndex(3);
+					showCityPickerButton.addEventListener('tap', function(event) {
+						picker.pickers[0].setSelectedIndex(23);
+					picker.pickers[1].setSelectedIndex(3);
+						picker.show(function(items) {
+							cityResult3.innerText =   _getParam(items[1], 'text') + " " + _getParam(items[2], 'text');
+							//返回 false 可以阻止选择框的关闭
+							//return false;
+						});
+					}, false);
+					
+					
+
+					//
+
+				});
+			})(mui, document);
+		</script>
+	</body>
+
+</html>

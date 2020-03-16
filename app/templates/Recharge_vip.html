@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>充值页面</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="{{ url_for('static', filename='css/mui.min.css') }}" rel="stylesheet" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav navs">
+			<a class="mui-action-back"><img src="{{ url_for('static', filename='images/4129.png') }}" />返回</a>
+			<h1 class="mui-title">VIP充值</h1>
+		</header>
+		<div class="mui-content">
+			<div class="formse">
+				<form class="fomset">
+					<div class="fmss">
+						<div class="div_ye">
+							<p class="yese">当前余额</p>
+							<p class="yuans">100.00元</p>
+						</div>
+						<div class="div_li">
+							<p>请选择充值余额</p>
+							<ul class="ye_ul">
+								<li>
+									<a href="#">20元</a>
+								</li>
+								<li>
+									<a href="#">50元</a>
+								</li>
+								<li>
+									<a href="#">100元</a>
+								</li>
+								<li>
+									<a href="#">200元</a>
+								</li>
+								<li>
+									<a href="#">自定义</a>
+								</li>
+							</ul>
+							<div class="shurj" style="display: none;">
+								<input type="number" placeholder="请输入充值金额" />
+							</div>
+						</div>
+					</div>
+					<div class="kaitong">
+						<div class="subit">
+							<button type="submit">立即充值</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<script src="{{ url_for('static', filename='js/mui.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-2.1.0.js') }}" ></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+		<script type="text/javascript">
+			$(".ye_ul li").click(function(){
+				$(this).addClass("active").siblings().removeClass("active");
+				if($(this).index()== 4 ){
+					$(".shurj").show()
+				}else{
+					$(".shurj").hide()
+				}
+			})
+		</script>
+	</body>
+
+</html>

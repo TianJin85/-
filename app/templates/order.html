@@ -1,0 +1,265 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>我的订单</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="{{ url_for('static', filename='css/mui.min.css') }}" rel="stylesheet" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav navs">
+			<a class="mui-action-back"><img src="{{ url_for('static', filename='images/4129.png') }}"/>返回</a>
+			<h1 class="mui-title">我的订单</h1>
+		</header>
+		<div class="mui-content">
+			<div class="order">
+
+				<div class="sliders">
+					<div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted sliders_list">
+						<a class="mui-control-item mui-active" href="#item1">全部</a>
+						<a class="mui-control-item" href="#item2">待支付</a>
+						<a class="mui-control-item" href="#item3">待参与</a>
+						<a class="mui-control-item" href="#item4">已完成</a>
+					</div>
+					<div class="mui-slider-group">
+						<div id="item1" class="mui-slider-item mui-control-content mui-active">
+							<ul class="lists_uls">
+								<li>
+									<a href="order_details/{{ userid }}">
+										<div class="bianhso">
+											<img src="{{ url_for('static', filename='images/1517.png') }}" />
+											<p class="order_bh">订单编号：00000000000000002214</p>
+											<p class="dais payment">待支付</p>
+										</div>
+										<div class="ingms_txt">
+											<img src="{{ url_for('static', filename='images/314.png') }}"/>
+											<div class="div_dev">
+												<p>某某某活动名称活动名称活动某某某活 动名称活动名称活动某某某活动</p>
+												<div class="div_p"><span>报名费用：¥48.00</span><span>数量：1</span></div>
+											</div>
+										</div>
+										<div class="shulian">
+											<p class="spshu">商品数量</p>
+											<p class="spfen">1份</p>
+										</div>
+										<div class="canyus">
+											<button class="payment">去支付</button>
+											<button class="delete">删除</button>
+										</div>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<div class="bianhso">
+											<img src="{{ url_for('static', filename='images/1517.png') }}" />
+											<p class="order_bh">订单编号：00000000000000002214</p>
+											<p class="dais partake">待参与</p>
+										</div>
+										<div class="ingms_txt">
+											<img src="{{ url_for('static', filename='images/314.png') }}"/>
+											<div class="div_dev">
+												<p>某某某活动名称活动名称活动某某某活 动名称活动名称活动某某某活动</p>
+												<div class="div_p"><span>报名费用：¥48.00</span><span>数量：1</span></div>
+											</div>
+										</div>
+										<div class="shulian">
+											<p class="spshu">商品数量</p>
+											<p class="spfen">1份</p>
+										</div>
+										<div class="canyus">
+											<button class="partake">确认参与</button>
+										</div>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<div class="bianhso">
+											<img src="{{ url_for('static', filename='images/1517.png') }}" />
+											<p class="order_bh">订单编号：00000000000000002214</p>
+											<p class="dais complete">已完成</p>
+										</div>
+										<div class="ingms_txt">
+											<img src="{{ url_for('static', filename='images/314.png') }}"/>
+											<div class="div_dev">
+												<p>某某某活动名称活动名称活动某某某活 动名称活动名称活动某某某活动</p>
+												<div class="div_p"><span>报名费用：¥48.00</span><span>数量：1</span></div>
+											</div>
+										</div>
+										<div class="shulian">
+											<p class="spshu">商品数量</p>
+											<p class="spfen">1份</p>
+										</div>
+										<div class="canyus">
+											<button class="complete">已完成</button>
+										</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div id="item2" class="mui-slider-item mui-control-content">
+							<ul class="lists_uls">
+								<li>
+									<a href="#">
+										<div class="bianhso">
+											<img src="{{ url_for('static', filename='images/1517.png') }}" />
+											<p class="order_bh">订单编号：00000000000000002214</p>
+											<p class="dais payment">待支付</p>
+										</div>
+										<div class="ingms_txt">
+											<img src="{{ url_for('static', filename='images/314.png') }}"/>
+											<div class="div_dev">
+												<p>某某某活动名称活动名称活动某某某活 动名称活动名称活动某某某活动</p>
+												<div class="div_p"><span>报名费用：¥48.00</span><span>数量：1</span></div>
+											</div>
+										</div>
+										<div class="shulian">
+											<p class="spshu">商品数量</p>
+											<p class="spfen">1份</p>
+										</div>
+										<div class="canyus">
+											<button class="payment">去支付</button>
+											<button class="delete">删除</button>
+										</div>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<div class="bianhso">
+											<img src="{{ url_for('static', filename='images/1517.png') }}" />
+											<p class="order_bh">订单编号：00000000000000002214</p>
+											<p class="dais payment">待支付</p>
+										</div>
+										<div class="ingms_txt">
+											<img src="{{ url_for('static', filename='images/314.png') }}"/>
+											<div class="div_dev">
+												<p>某某某活动名称活动名称活动某某某活 动名称活动名称活动某某某活动</p>
+												<div class="div_p"><span>报名费用：¥48.00</span><span>数量：1</span></div>
+											</div>
+										</div>
+										<div class="shulian">
+											<p class="spshu">商品数量</p>
+											<p class="spfen">1份</p>
+										</div>
+										<div class="canyus">
+											<button class="payment">去支付</button>
+											<button class="delete">删除</button>
+										</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div id="item3" class="mui-slider-item mui-control-content">
+							<ul class="lists_uls">
+								<li>
+									<a href="#">
+										<div class="bianhso">
+											<img src="{{ url_for('static', filename='images/1517.png') }}" />
+											<p class="order_bh">订单编号：00000000000000002214</p>
+											<p class="dais partake">待参与</p>
+										</div>
+										<div class="ingms_txt">
+											<img src="{{ url_for('static', filename='images/314.png') }}"/>
+											<div class="div_dev">
+												<p>某某某活动名称活动名称活动某某某活 动名称活动名称活动某某某活动</p>
+												<div class="div_p"><span>报名费用：¥48.00</span><span>数量：1</span></div>
+											</div>
+										</div>
+										<div class="shulian">
+											<p class="spshu">商品数量</p>
+											<p class="spfen">1份</p>
+										</div>
+										<div class="canyus">
+											<button class="partake">确认参与</button>
+										</div>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<div class="bianhso">
+											<img src="{{ url_for('static', filename='images/1517.png')}}" />
+											<p class="order_bh">订单编号：00000000000000002214</p>
+											<p class="dais partake">待参与</p>
+										</div>
+										<div class="ingms_txt">
+											<img src="{{ url_for('static', filename='images/314.png')}}"/>
+											<div class="div_dev">
+												<p>某某某活动名称活动名称活动某某某活 动名称活动名称活动某某某活动</p>
+												<div class="div_p"><span>报名费用：¥48.00</span><span>数量：1</span></div>
+											</div>
+										</div>
+										<div class="shulian">
+											<p class="spshu">商品数量</p>
+											<p class="spfen">1份</p>
+										</div>
+										<div class="canyus">
+											<button class="partake">确认参与</button>
+										</div>
+									</a>
+								</li>
+							</ul>
+							
+						</div>
+						<div id="item4" class="mui-slider-item mui-control-content">
+							<ul class="lists_uls">
+								<li>
+									<a href="#">
+										<div class="bianhso">
+											<img src="{{ url_for('static', filename='images/1517.png')}}" />
+											<p class="order_bh">订单编号：00000000000000002214</p>
+											<p class="dais complete">已完成</p>
+										</div>
+										<div class="ingms_txt">
+											<img src="{{ url_for('static', filename='images/314.png')}}"/>
+											<div class="div_dev">
+												<p>某某某活动名称活动名称活动某某某活 动名称活动名称活动某某某活动</p>
+												<div class="div_p"><span>报名费用：¥48.00</span><span>数量：1</span></div>
+											</div>
+										</div>
+										<div class="shulian">
+											<p class="spshu">商品数量</p>
+											<p class="spfen">1份</p>
+										</div>
+										<div class="canyus">
+											<button class="complete">已完成</button>
+										</div>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<div class="bianhso">
+											<img src="{{ url_for('static', filename='images/1517.png')}}" />
+											<p class="order_bh">订单编号：00000000000000002214</p>
+											<p class="dais complete">已完成</p>
+										</div>
+										<div class="ingms_txt">
+											<img src="{{ url_for('static', filename='images/314.png')}}"/>
+											<div class="div_dev">
+												<p>某某某活动名称活动名称活动某某某活 动名称活动名称活动某某某活动</p>
+												<div class="div_p"><span>报名费用：¥48.00</span><span>数量：1</span></div>
+											</div>
+										</div>
+										<div class="shulian">
+											<p class="spshu">商品数量</p>
+											<p class="spfen">1份</p>
+										</div>
+										<div class="canyus">
+											<button class="complete">已完成</button>
+										</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="{{ url_for('static', filename='js/mui.min.js')}}"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+	</body>
+
+</html>

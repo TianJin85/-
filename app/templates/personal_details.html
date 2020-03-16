@@ -1,0 +1,382 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>个人详情页面</title>
+	<meta name="viewport"
+		content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link href="{{ url_for('static', filename='css/mui.min.css') }}" rel="stylesheet" />
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+	<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/jquery.SuperSlide.2.1.1.js') }}"></script>
+</head>
+
+<body>
+	<header class="mui-bar mui-bar-nav navs">
+		<a class="mui-action-back"><img src="{{ url_for('static', filename='images/4129.png') }}" />返回</a>
+		<h1 class="mui-title">个人详情页</h1>
+	</header>
+	<div class="mui-content">
+		<div class="pas">
+			<div class="bannder">
+				<div class="fullSlide" style="height: 200px;overflow: hidden;">
+					<div class="bd" style="height: 200px;">
+						<ul style="height: 200px;">
+							<li>
+								<a href="#"><img src="{{ url_for('static', filename='images/4182.png') }}" /></a>
+							</li>
+							<li>
+								<a href="#"><img src="{{ url_for('static', filename='images/2.png') }}" /></a>
+							</li>
+							<li>
+								<a href="#"><img src="{{ url_for('static', filename='images/4.png') }}" /></a>
+							</li>
+						</ul>
+					</div>
+					<div class="hd">
+						<ul></ul>
+					</div>
+				</div>
+				<script type="text/javascript">
+					jQuery(".fullSlide").slide({
+						titCell: ".hd ul",
+						mainCell: ".bd ul",
+						effect: "fold",
+						autoPlay: true,
+						autoPage: true,
+						trigger: "click",
+					})
+				</script>
+			</div>
+			<div class="praise">
+				<span id="praise">
+					<img src="{{ url_for('static', filename='images/sc.png') }}" id="praise-img" />
+				</span>
+			</div>
+		</div>
+		<div class="pers">
+			<div class="pers_box">
+				<div class="pers_name">
+					<div class="names">
+						<h5 id="name_times">刘大姐 <img src="{{ url_for('static', filename='images/4334.png') }}"></h5>
+						<span id="name_id">00001</span>
+					</div>
+					<div class="xinxis">
+
+					</div>
+				</div>
+
+			</div>
+			<div class="shouj">
+				<ul class="shouj_ul">
+					<li id="telephone" onclick="callPhone()">
+						<a href="#"><img src="{{ url_for('static', filename='images/4328.png') }}" />
+							<p>手机</p>
+						</a>
+					</li>
+					<li>
+						<a href="#"><img src="{{ url_for('static', filename='images/wx1.png') }}" />
+							<p>微信</p>
+						</a>
+					</li>
+					<li>
+						<a href="#"><img src="{{ url_for('static', filename='images/QQ.png') }}" />
+							<p>QQ</p>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="diz_list">
+				<ul class="diz_ul">
+					<li>
+						<label>来自地区</label>
+						<p>西秀区</p>
+					</li>
+					<li>
+						<label>工资月薪</label>
+						<p>3500-5000元</p>
+					</li>
+					<li>
+						<label>毕业院校</label>
+						<p>贵州大学</p>
+					</li>
+					<li>
+						<label>学历</label>
+						<p>本科</p>
+					</li>
+					<li>
+						<label>工作单位</label>
+						<p>XXX公司</p>
+					</li>
+					<li>
+						<label>职业</label>
+						<p>销售</p>
+					</li>
+					<li>
+						<label>职业性质</label>
+						<p>房地产</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="zheyao">
+			<div class="zheyao_bos">
+				<div class="sliders">
+					<div
+						class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted sliders_list1">
+						<a class="mui-control-item mui-active" href="#item1">家庭状况</a>
+						<a class="mui-control-item " href="#item2">择偶要求</a>
+						<a class="mui-control-item" href="#item3">内心独白</a>
+						<a class="mui-control-item" href="#item4">其他照片</a>
+					</div>
+					<div class="mui-slider-group">
+						<div id="item1" class="mui-slider-item mui-control-content mui-active">
+							<div class="jiatis">
+								<div class="name_title">
+									<h4>家庭状况</h4>
+								</div>
+								<ul class="diz_ul" id="diz_ul">
+									<li><label>住房情况</label>
+										<p>自有住房</p>
+									</li>
+									<li><label>婚恋情况</label>
+										<p>离异</p>
+									</li>
+									<li><label>家庭主要成员</label>
+										<p>父亲、母亲、妹妹、弟弟</p>
+									</li>
+								</ul>
+								<div class="more_cons" id="more_cons1">VIP会员免费查看以下信息 <span
+										class="mui-icon mui-icon-arrowdown"></span></div>
+							</div>
+						</div>
+						<div id="item2" class="mui-slider-item mui-control-content ">
+							<div class="jiatis">
+								<div class="name_title">
+									<h4>择偶要求</h4>
+								</div>
+								<ul class="diz_ul" id="diz_ul1">
+									<li>
+										<label>婚史要求</label>
+										<p>不限</p>
+									</li>
+									<li>
+										<label>年龄要求</label>
+										<p>33至38岁</p>
+									</li>
+									<li>
+										<label>最低身高要求</label>
+										<p>169cm</p>
+									</li>
+									<li>
+										<label>体重要求</label>
+										<p>65-85kg</p>
+									</li>
+									<li>
+										<label>外貌要求</label>
+										<p>高大健壮</p>
+									</li>
+									<li>
+										<label>最低年薪</label>
+										<p>不限</p>
+									</li>
+									<li>
+										<label>住房要求</label>
+										<p>不限</p>
+									</li>
+									<li>
+										<label>车辆要求</label>
+										<p>不限</p>
+									</li>
+									<li>
+										<label>地区要求</label>
+										<p>本地人</p>
+									</li>
+									<li>
+										<label>有无子女要求</label>
+										<p>不限</p>
+									</li>
+									<li>
+										<label>其他要求</label>
+										<p>安顺人，学历大专以上，月薪5千以 上，开朗，不抽烟喝酒</p>
+									</li>
+								</ul>
+								<div class="more_cons" id="more_cons2">查看更多 <span
+										class="mui-icon mui-icon-arrowdown"></span></div>
+							</div>
+						</div>
+						<div id="item3" class="mui-slider-item mui-control-content ">
+							<div class="jiatis">
+								<div class="name_title">
+									<h4>内心独白</h4>
+								</div>
+								<div class="diz_ul" id="diz_ul2">
+									<p>不抽烟喝酒，喜欢旅游</p>
+								</div>
+
+								<div class="more_cons" id="more_cons3">VIP会员免费查看以下信息 <span
+										class="mui-icon mui-icon-arrowdown"></span></div>
+							</div>
+						</div>
+						<div id="item4" class="mui-slider-item mui-control-content ">
+							<div class="jiatis">
+								<div class="name_title">
+									<h4>其他图片</h4>
+								</div>
+								<div class="diz_ul" id="diz_ul3">
+									<img src="{{ url_for('static', filename='images/4.png') }}" />
+									<img src="{{ url_for('static', filename='images/4.png') }}" />
+								</div>
+
+								<div class="more_cons" id="more_cons4">VIP会员免费查看以下信息 <span
+										class="mui-icon mui-icon-arrowdown"></span></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--按钮-->
+		<div class="div_btn">
+			<button class="kefu"><img style="width: 27px;margin-bottom: -7px;"
+					src="{{ url_for('static', filename='images/4146.png') }}" /><span>客服</span></button>
+			<button class="jianx"><img style="width: 16px;margin-bottom: -4px;"
+					src="{{ url_for('static', filename='images/19284.png') }}" /><span>牵线</span></button>
+		</div>
+		<!--弹窗-->
+		<div class="tanc">
+			<div class="tanc_box">
+				<div class="tanc_title">
+					<h4>提示</h4>
+					<!--余额不足时显示的内容-->
+					<!--<p>您的当前余额不足，查看当前信息 请充值后牵线，VIP会员免费！</p>-->
+					<!--支付-->
+					<p>您查看当前信息需要5.00元， VIP会员免费查阅！</p>
+				</div>
+				<div class="btn_tis">
+					<button class="btn_qx">取消</button>
+					<button class="btn_ok">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="{{ url_for('static', filename='js/mui.min.js') }}"></script>
+	<!--<script type="text/javascript" src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>-->
+	<script type="text/javascript">
+		mui.init()
+		mui('body').on('tap', 'a', function () {
+			window.top.location.href = this.href;
+		})
+
+		$.ajax({
+			type: "get",
+			url: '{{ url_for("front.wechat+search_id") }}',
+			async: true,
+			data: {
+				'uid': getQueryVariable('uid')
+			},
+			dataType: 'json',
+			success: function (msg) {
+				console.log(msg)
+				var datas = msg;
+				var name_time = '' + datas[0].username + ' <img src="{{ url_for("static", filename="images/4334.png") }}">'
+				$("#name_times").html(name_time)
+				var name_id = '0000' + datas[0].uid;
+				$("#name_id").html(name_id);
+				if (datas[0].sex == "女") {
+					var xinxis = '<img src="{{ url_for("static", filename="images/3288.png") }}"><span>' + datas[0].age + '岁</span><span>' + datas[0].education + '</span><span>' + datas[0].stature + 'cm</span><span>' + datas[0].weight + '公斤</span>'
+				} else {
+					var xinxis = '<img src="{{ url_for("static", filename="images/03288.png") }}"><span>' + datas[0].age + '岁</span><span>' + datas[0].education + '</span><span>' + datas[0].stature + 'cm</span><span>' + datas[0].weight + '公斤</span>'
+				}
+				$('.xinxis').html(xinxis)
+				function callPhone() {
+    let btnArray = ['拨打', '取消']; 
+    let Phone = "10086"; 
+    mui.confirm('是否拨打 ' + Phone + ' ？', '提示', btnArray, function(e) { 
+         if (e.index == 0) { 
+            plus.device.dial(Phone, false); 
+         }  
+    });   
+}
+			},
+			error: function () {
+				console.log("网络错误")
+			}
+		})
+		function getQueryVariable(variable) {
+			var query = window.location.search.substring(1);
+			var vars = query.split("&");
+			for (var i = 0; i < vars.length; i++) {
+				var pair = vars[i].split("=");
+				if (pair[0] == variable) {
+					return pair[1];
+				}
+			}
+			return (false);
+		}
+
+		$(".jianx").click(function () {
+			$(".tanc").show()
+		})
+		$(".btn_qx").click(function () {
+			$(".tanc").hide()
+		});
+		//家庭状况
+		$("#more_cons1").click(function () {
+			$("#diz_ul").slideToggle()
+			if ($(this).hasClass('bg')) {
+				$(this).removeClass('bg').addClass('bg_click').html('VIP会员免费查看以下信息<span class="mui-icon mui-icon-arrowdown"></span>')
+			} else {
+				$(this).removeClass('bg_click').addClass('bg').html('收起<span class="mui-icon mui-icon-arrowup"></span>')
+			}
+		})
+
+		//择偶要求
+
+		$("#more_cons2").click(function () {
+			$("#diz_ul1").slideToggle()
+			if ($(this).hasClass('bg')) {
+				$(this).removeClass('bg').addClass('bg_click').html('查看更多<span class="mui-icon mui-icon-arrowdown"></span>')
+			} else {
+				$(this).removeClass('bg_click').addClass('bg').html('收起<span class="mui-icon mui-icon-arrowup"></span>')
+			}
+		})
+		//内心独白
+		$("#more_cons3").click(function () {
+			$("#diz_ul2").slideToggle()
+			if ($(this).hasClass('bg')) {
+				$(this).removeClass('bg').addClass('bg_click').html('VIP会员免费查看以下信息<span class="mui-icon mui-icon-arrowdown"></span>')
+			} else {
+				$(this).removeClass('bg_click').addClass('bg').html('收起<span class="mui-icon mui-icon-arrowup"></span>')
+			}
+		})
+		//其他图片
+		$("#more_cons4").click(function () {
+			$("#diz_ul3").slideToggle()
+			if ($(this).hasClass('bg')) {
+				$(this).removeClass('bg').addClass('bg_click').html('VIP会员免费查看以下信息<span class="mui-icon mui-icon-arrowdown"></span>')
+			} else {
+				$(this).removeClass('bg_click').addClass('bg').html('收起<span class="mui-icon mui-icon-arrowup"></span>')
+			}
+		})
+	</script>
+	<script>
+		/* @author:Romey
+		 * 动态点赞
+		 * 此效果包含css3，部分浏览器不兼容（如：IE10以下的版本）
+		 */
+		$(function () {
+			$("#praise").click(function () {
+				var praise_img = $("#praise-img");
+				if (praise_img.attr("src") == ("{{ url_for('static', filename='images/sc1.png') }}")) {
+					$(this).html("<img src='{{ url_for('static', filename='images/sc.png') }}' id='praise-img' class='animation' />");
+				} else {
+					$(this).html("<img src='{{ url_for('static', filename='images/sc1.png') }}' id='praise-img' class='animation' />");
+				}
+			});
+		})
+	</script>
+</body>
+
+</html>

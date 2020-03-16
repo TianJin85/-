@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>订单详情页</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="{{ url_for('static', filename='css/mui.min.css') }}" rel="stylesheet" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav navs">
+			<a class="mui-action-back"><img src="{{ url_for('static', filename='images/4129.png') }}"/>返回</a>
+			<h1 class="mui-title">我的订单</h1>
+		</header>
+		<div class="mui-content">
+			<div class="namest">
+				<ul class="mui-table-view namest_ul">
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right">
+							<img src="{{ url_for('static', filename='images/1517.png') }}" />
+							<div class="names_name">
+								<h4>张三 <span>18785302556</span></h4>
+								<p>贵州省贵阳市花溪区腾龙湾B1区1栋8楼1号</p>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="orderlist">
+				<div class="bianhso">
+					<img src="{{ url_for('static', filename='images/1517.png') }}" />
+					<p class="order_bh">订单编号：00000000000000002214</p>
+				</div>
+				<div class="ingms_txt">
+					<img src="{{ url_for('static', filename='images/314.png') }}" />
+					<div class="div_dev">
+						<p>某某某活动名称活动名称活动某某某活 动名称活动名称活动某某某活动</p>
+						<div class="div_p"><span>报名费用：¥48.00</span><span>数量：1</span></div>
+					</div>
+				</div>
+				<div class="shulian">
+					<p class="spshu">商品数量</p>
+					<p class="spfen">x1</p>
+				</div>
+				<div class="shulian">
+					<p class="spshu">支付方式</p>
+					<p class="spfen">现金购买</p>
+				</div>
+				<div class="shulian">
+					<p class="spshu">商品金额</p>
+					<p class="spfen">￥48.00</p>
+				</div>
+				<div class="shulian">
+					<p class="spshu">消费时间</p>
+					<p class="spfen">2020-02-08 12:20</p>
+				</div>
+				<div class="shulian">
+					<p class="spshu">配注</p>
+				</div>
+				<div class="peizhu">
+					<textarea placeholder="配注输入的内容"></textarea>
+				</div>
+				<div class="tolade">
+					<p><span class="shulians">数量：1</span><span class="shulians">￥48.00</span><span class="zhif">总支付</span> <span class="zonghzif">￥48.00</span></p>
+				</div>
+			</div>
+		</div>
+		<script src="{{ url_for('static', filename='js/mui.min.js') }}"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+	</body>
+
+</html>

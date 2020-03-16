@@ -1,0 +1,763 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>{% block title %}报名{% endblock %}</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/select-mania.css') }}" />
+        <link href="{{ url_for('static', filename='css/mui.min.css') }}" rel="stylesheet" />
+        <link href="{{ url_for('static', filename='picker/mui.picker.css') }}" rel="stylesheet" />
+        <link href="{{ url_for('static', filename='picker/mui.poppicker.css') }}" rel="stylesheet" />
+        <link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav navs">
+			<a class="mui-action-back"><img src="{{ url_for('static', filename='images/4129.png') }}" />返回</a>
+			{% block h1 %}<h1 class="mui-title" id="userid" name="{{ userid }}"> 报名</h1>{% endblock %}
+		</header>
+		<div class="mui-content">
+			<div class="mainst">
+				<img src="{{ url_for('static', filename='images/4182.png') }}" />
+				<form class="mui-input-group form" method="#" action="#" >
+					<div class="forms">
+						<div class="name_title">
+							<h4>基本情况</h4>
+						</div>
+						<div class="mui-input-row div_list">
+							<label>姓名</label>
+							<div class="xiansd xiansdss">
+                                {% block username %}
+								<input type="text" id="username" placeholder="请输入您的姓名" />
+                                {% endblock %}
+							</div>
+						</div>
+						<div class="mui-input-row div_list">
+							<label>所属地区</label>
+							<div class="xiansd">
+								<div class="container" style="width: 100%;">
+									<div class="diq" id="showCityPicker3">
+                                        {% block cityResult3 %}
+										<div class="button" id="cityResult3">
+											<p id="cityResult3">请选择所属地区</p>
+										</div>
+                                        {% endblock %}
+										<button type="button"></button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="mui-input-row div_list">
+							<label>身份证号码</label>
+							<div class="xiansd xiansdss">
+                                {% block cardid %}
+								<input type="text" id="cardid" placeholder="请输入您的身份证号码" />
+                                {% endblock %}
+							</div>
+						</div>
+						<div class="mui-input-row div_list">
+							<label>身高</label>
+							<div class="xiansd xiansdss">
+                                {% block stature%}
+								<input type="text" id="stature" placeholder="请输入您的身高" />
+                                {% endblock %}
+							</div>
+						</div>
+						<div class="mui-input-row div_list">
+							<label>体重</label>
+							<div class="xiansd xiansdss">
+                                {% block weight %}
+								<input type="text" id="weight" placeholder="请输入您的体重" />
+                                {% endblock %}
+							</div>
+						</div>
+						<div class="mui-input-row div_list">
+							<label>微信</label>
+							<div class="xiansd xiansdss">
+                                {% block wechat %}
+								<input type="text" id="wechat" placeholder="请输入您的微信" />
+                                {% endblock %}
+							</div>
+						</div>
+						<div class="mui-input-row div_list">
+							<label>QQ</label>
+							<div class="xiansd xiansdss">
+                                {% block qq %}
+								<input type="text" id="qq" placeholder="请输入您的QQ" />
+                                {% endblock %}
+							</div>
+						</div>
+					</div>
+					<div class="forms">
+						<div class="mui-input-row div_list">
+							<label>毕业院校</label>
+							<div class="xiansd xiansdss">
+                                {% block school %}
+								<input type="text" id="school" placeholder="请输入您的毕业院校" />
+                                {% endblock %}
+							</div>
+						</div>
+                    {% block education%}
+						<div class="mui-input-row div_list">
+							<label>学历</label>
+							<div class="xiansd">
+								<div class="container" style="width: 100%;">
+									<select id="education" class="demo-4">
+										<option value="专科">专科</option>
+										<option value="本科">本科</option>
+										<option value="研究生">研究生</option>
+										<option value="教授">教授</option>
+									</select>
+
+								</div>
+							</div>
+						</div>
+                    {% endblock %}
+						<div class="mui-input-row div_list">
+							<label>工作单位</label>
+							<div class="xiansd xiansdss">
+                                {% block workunit %}
+								<input type="text" id="workunit" placeholder="请输入您的工作单位" />
+                                {% endblock %}
+							</div>
+						</div>
+						<div class="mui-input-row div_list">
+							<label>职业</label>
+							<div class="xiansd xiansdss">
+                                {% block occupation%}
+								<input type="text" id="occupation" placeholder="请输入您的职业" />
+                                {% endblock %}
+							</div>
+						</div>
+						<div class="mui-input-row div_list">
+							<label>职业性质</label>
+							<div class="xiansd xiansdss">
+                                {% block profession %}
+								<input type="text" id="profession" placeholder="请输入您的职业性质" />
+                                {% endblock %}
+							</div>
+						</div>
+						<div class="mui-input-row div_list">
+							<label>工资月薪</label>
+							<div class="xiansd">
+                                {% block monthly %}
+								<input type="number" id="monthly1" placeholder="5000" />
+								<p>至</p><input type="number" id="monthly2" placeholder="10000" />
+                                {% endblock %}
+							</div>
+
+						</div>
+					</div>
+					<div class="forms">
+						<div class="name_title">
+							<h4>家庭状况</h4>
+						</div>
+						<div class="mui-input-row div_list">
+							<label>住房情况</label>
+							<div class="xiansd xiansdt">
+								<div class="xiansd1 input-radio">
+                                    {% block yes1 %}
+									<input name="checkbox3" id="yes1" value="有" type="radio" checked="checked">
+									<label for="yes1">有</label>
+                                    {% endblock %}
+
+								</div>
+								<div class="xiansd2 input-radio">
+                                    {% block nos1 %}
+									<input name="checkbox3" id="nos1" value="女" type="radio">
+									<label for="nos1">无</label>
+                                    {% endblock %}
+								</div>
+							</div>
+						</div>
+						<div class="mui-input-row div_list">
+							<label>车辆情况</label>
+							<div class="xiansd xiansdt">
+								<div class="xiansd1 input-radio">
+                                    {% block yes %}
+									<input name="checkbox2" id="yes" value="有" type="radio" checked="checked">
+									<label for="yes">有</label>
+                                    {% endblock %}
+
+								</div>
+								<div class="xiansd2 input-radio">
+                                    {% block nos %}
+									<input name="checkbox2" id="nos" value="女" type="radio">
+									<label for="nos">无</label>
+                                    {% endblock %}
+								</div>
+							</div>
+						</div>
+						<div class="mui-input-row div_list">
+							<label>家庭主要成员</label>
+							<div class="xiansd xiansdss">
+                                {% block member %}
+								<input type="text" id="member" placeholder="请输入您的家庭主要成员" />
+                                {% endblock %}
+							</div>
+
+						</div>
+					</div>
+					<div class="forms">
+						<div class="name_title">
+							<h4>内心独白</h4>
+						</div>
+						<div class="neixdb">
+                            {% block rest %}
+							<textarea id="rest" placeholder="请输入其他要求"></textarea>
+                            {% endblock %}
+						</div>
+					</div>
+					<div class="forms">
+						<div class="name_title">
+							<h4>择偶要求</h4>
+						</div>
+						<div class="mui-input-row div_list">
+							<label>婚史要求</label>
+							<div class="xiansd xiansdt" style="width: 66%;">
+								<div class="xiansd1 input-radio" style="width: 33%;">
+                                    {% block wei%}
+									<input name="checkbox4" id="wei" value="未婚" type="radio" checked="checked">
+									<label for="wei">未婚</label>
+                                    {% endblock %}
+								</div>
+								<div class="xiansd1 input-radio" style="width: 33%;">
+                                    {% block liyi %}
+									<input name="checkbox4" id="liyi" value="离异" type="radio">
+									<label for="liyi">离异</label>
+                                    {% endblock %}
+								</div>
+								<div class="xiansd2 input-radio" style="width: 33%;">
+                                    {% block soi %}
+									<input name="checkbox4" id="soi" value="丧偶" type="radio">
+									<label for="soi">丧偶</label>
+                                    {% endblock %}
+								</div>
+							</div>
+						</div>
+						<div class="mui-input-row div_list">
+							<label>年龄要求</label>
+							<div class="xiansd">
+                                {% block age %}
+								<input type="number" id="age1" placeholder="20" />
+								<p>至</p><input type="number" id="age2" placeholder="25" />
+                                {% endblock %}
+							</div>
+							<div class="xuanshu">
+								<div class="xiansd1 input-radio">
+                                    {% block bux %}
+									<input id="bux" value="不限" type="radio">
+									<label for="bux">不限</label>
+                                    {% endblock %}
+								</div>
+							</div>
+						</div>
+						<div class="mui-input-row div_list">
+							<label>最低身高要求</label>
+							<div class="xiansd xiansdss">
+                                {% block ze_stature %}
+								<input type="text" id="ze_stature" placeholder="请输入您的最低身高要求" />
+                                {% endblock %}
+							</div>
+						</div>
+						<div class="mui-input-row div_list">
+							<label>体重要求</label>
+							<div class="xiansd">
+                                {% block number %}
+								<input type="number" id="ze_weight1" placeholder="45kg" />
+								<p>至</p><input id="ze_weight2" type="number" placeholder="65kg" />
+                                {% endblock %}
+							</div>
+							<div class="xuanshu">
+								<div class="xiansd1 input-radio">
+                                    {% block bux1 %}
+									<input id="bux" value="不限" type="radio">
+									<label for="bux">不限</label>
+                                    {% endblock %}
+								</div>
+							</div>
+						</div>
+						<div class="mui-input-row div_list">
+							<label>月薪要求</label>
+							<div class="xiansd">
+                                {% block ze_monthly %}
+								<input type="number" id="ze_monthly1" placeholder="5000" />
+								<p>至</p><input type="number" id="ze_monthly2" placeholder="10000" />
+                                {% endblock%}
+							</div>
+							<div class="xuanshu">
+								<div class="xiansd1 input-radio">
+                                    {% block bux2 %}
+									<input id="bux" value="不限" type="radio">
+									<label for="bux">不限</label>
+                                    {% endblock %}
+								</div>
+							</div>
+						</div>
+						<div class="mui-input-row div_list">
+							<label>住房要求</label>
+							<div class="xiansd xiansdt">
+								<div class="xiansd1 input-radio">
+                                    {% block yess%}
+									<input name="checkbox5" id="yess" value="有" type="radio" checked="checked">
+									<label for="yess">有</label>
+                                    {% endblock %}
+								</div>
+								<div class="xiansd2 input-radio">
+                                    {% block nost %}
+									<input name="checkbox5" id="nost" value="女" type="radio">
+									<label for="nost">无</label>
+                                    {% endblock %}
+								</div>
+							</div>
+						</div>
+						<div class="mui-input-row div_list">
+							<label>车辆要求</label>
+							<div class="xiansd xiansdt">
+								<div class="xiansd1 input-radio">
+                                    {% block yess1 %}
+									<input name="checkbox6" id="yess1" value="有" type="radio" checked="checked">
+									<label for="yess1">有</label>
+                                    {% endblock %}
+
+								</div>
+								<div class="xiansd2 input-radio">
+                                    {% block nost1%}
+									<input name="checkbox6" id="nost1" value="女" type="radio">
+									<label for="nost1">无</label>
+                                    {% endblock %}
+								</div>
+							</div>
+						</div>
+						<div class="mui-input-row div_list">
+							<label>地区要求</label>
+							<div class="xiansd">
+								<div class="container" style="width: 100%;">
+									<div class="diq" id="showCityPicker4">
+                                        {% block cityResult4 %}
+										<div class="button" id="cityResult4">
+											<p id="cityResult3">请选择地区</p>
+										</div>
+										<button type="button"></button>
+                                        {% endblock %}
+									</div>
+
+								</div>
+							</div>
+							<div class="xuanshu">
+								<div class="xiansd1 input-radio">
+                                    {% block bux5 %}
+									<input id="bux5" value="不限" type="radio">
+									<label for="bux5">不限</label>
+                                    {% endblock %}
+								</div>
+							</div>
+						</div>
+						<div class="mui-input-row div_list">
+							<label>有无子女要求</label>
+							<div class="xiansd xiansdt">
+								<div class="xiansd1 input-radio">
+                                    {% block yess3 %}
+									<input name="checkbox7" id="yess3" value="有" type="radio" checked="checked">
+									<label for="yess3">有</label>
+                                    {% endblock %}
+								</div>
+								<div class="xiansd2 input-radio">
+                                    {% block nost3 %}
+									<input name="checkbox7" id="nost3" value="女" type="radio">
+									<label for="nost3">无</label>
+                                    {% endblock %}
+								</div>
+							</div>
+						</div>
+						<div class="mui-input-row div_list" style="border-bottom: none;">
+							<label>其他要求</label>
+						</div>
+						<div class="neixdb" style="margin-top: 0;">
+                            {% block ze_pests %}
+							<textarea id="ze_pests" placeholder="请输入其他要求"></textarea>
+                            {% endblock %}
+						</div>
+					</div>
+					<div class="forms">
+						<div class="name_title">
+							<h4>照片上传</h4>
+						</div>
+                        {% block img %}
+						<ul class="mui-table-view mui-grid-view" id="father">
+							<li class="mui-table-view-cell mui-media mui-col-xs-4" id="final">
+								<span class="mui-icon iconfont icon-add add-img" id="imgModel"></span>
+								<input type="file" id="fileElem" accept="image/*" onchange="handleFiles(this.files)">
+							</li>
+							<div style="clear: both;"></div>
+						</ul>
+                        {% endblock %}
+					</div>
+					<div class="forms">
+						<div class="mui-input-row div_list">
+							<label>手机号码</label>
+							<div class="xiansd xiansdss">
+                                {% block phone %}
+								<input type="text" id="phone" placeholder="请输入您的手机号码" />
+                                {% endblock %}
+							</div>
+						</div>
+						<div class="mui-input-row div_list">
+							<label>短信验证</label>
+							<div class="xiansd xiansdss yuanzen">
+								<input type="text" placeholder="请输入验证码" />
+							</div>
+							<div class="xuanshu xuanshu1">
+								<button type="button">发送验证码</button>
+							</div>
+						</div>
+					</div>
+					<div class="subit">
+						<button type="button" id="button">点击提交</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<!-- 弹窗 -->
+		<div class="tanc" style="display: none;">
+			<div class="tanc_box">
+				<div class="tanc_title">
+					<h4>提示</h4>
+					<p class="tanc_p">您当前还不是会员，无法使用搜素功能！ 请入住成为会员</p>
+				</div>
+				<div class="btn_tis">
+					<button class="btn_qx">取消</button>
+					<button class="btn_ok">确定</button>
+				</div>
+			</div>
+		</div>
+		<script src="{{ url_for('static', filename='js/mui.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-1.11.0.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/select-mania.js') }}"></script>
+		<script src="{{ url_for('static', filename='picker/mui.picker.js') }}"></script>
+		<script src="{{ url_for('static', filename='picker/mui.poppicker.js') }}"></script>
+		<script src="{{ url_for('static', filename='picker/city.data-3.js') }}" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+		<script type="text/javascript">
+			$('.demo-4').selectMania({
+				themes: ['green'],
+				placeholder: 'Please select me!'
+			});
+		</script>
+		<script>
+			(function($, doc) {
+				$.init();
+				$.ready(function() {
+					/**
+					 * 获取对象属性的值
+					 * 主要用于过滤三级联动中，可能出现的最低级的数据不存在的情况，实际开发中需要注意这一点；
+					 * @param {Object} obj 对象
+					 * @param {String} param 属性名
+					 */
+					var _getParam = function(obj, param) {
+						return obj[param] || '';
+					};
+					//所属地区
+
+					var picker = new mui.PopPicker({
+						layer: 3
+					});
+					var showCityPickerButton = doc.getElementById('showCityPicker3');
+					var cityResult3 = doc.getElementById('cityResult3');
+					picker.setData(cityData3)
+					picker.pickers[0].setSelectedIndex(23);
+					picker.pickers[1].setSelectedIndex(3);
+					showCityPickerButton.addEventListener('tap', function(event) {
+						picker.pickers[0].setSelectedIndex(23);
+						picker.pickers[1].setSelectedIndex(3);
+						picker.show(function(items) {
+							cityResult3.innerText = _getParam(items[1], 'text') + " " + _getParam(items[2], 'text');
+							//返回 false 可以阻止选择框的关闭
+							//return false;
+						});
+					}, false);
+
+					//地区要求
+					var picker1 = new mui.PopPicker({
+						layer: 3
+					});
+					var showCityPickerButton = doc.getElementById('showCityPicker4');
+					var cityResult4 = doc.getElementById('cityResult4');
+					picker1.setData(cityData3)
+					picker1.pickers[0].setSelectedIndex(23);
+					picker1.pickers[1].setSelectedIndex(3);
+					showCityPickerButton.addEventListener('tap', function(event) {
+						picker1.pickers[0].setSelectedIndex(23);
+						picker1.pickers[1].setSelectedIndex(3);
+						picker1.show(function(items) {
+							cityResult4.innerText = _getParam(items[1], 'text') + " " + _getParam(items[2], 'text');
+							//返回 false 可以阻止选择框的关闭
+							//return false;
+						});
+					}, false);
+
+				});
+			})(mui, document);
+		</script>
+		<script type="text/javascript">
+			mui.init()
+
+			mui.init()
+			var lis;
+			var uuid = null;
+			var idcard;
+			var imgModel = document.getElementById("imgModel");
+			var fileElem = document.getElementById("fileElem");
+			var arrayObj = {};
+
+			//公共方法：判断图片的个数，显示或隐藏加号图标
+			function pub() {
+				lis = document.getElementById('father').getElementsByTagName('li').length;
+				var final = document.getElementById("final");
+				if(lis == 4) {
+					final.style.display = "none";
+				} else {
+					final.style.display = "inline"
+				}
+			}
+
+			//监听事件：点击加号图标，添加图片
+			imgModel.addEventListener("tap", function(evt) {
+				if(fileElem) {
+					fileElem.click();
+				}
+				evt.preventDefault();
+			}, false);
+
+			//点击删除图标，删除图片
+			mui(".mui-table-view").on("tap", ".delete-btn", function() {
+				var Bid = this.getAttribute("id");
+				var id = document.getElementById(Bid);
+				var par = id.parentNode;
+				var father = document.getElementById("father");
+				father.removeChild(par);
+				pub();
+			})
+
+			//添加图片
+			function handleFiles(files) {
+				if(files.length) {
+					var file = files[0];
+					var fileReader = new FileReader();
+					fileReader.onload = function() {
+						uuid = guid();
+						lis = document.getElementById('father').getElementsByTagName('li').length;
+						if(lis < 4) {
+							var father = document.getElementById("father");
+							var final = document.getElementById("final");
+							var li = document.createElement('li');
+							li.className = "mui-table-view-cell mui-media mui-col-xs-4 delete-ico";
+							li.id = 'id' + uuid;
+							li.innerHTML = '<div class="imgste_list"><img class="mui-media-object" id="img' + uuid + '" src=""></div>' +
+								'<input type="file" id="input' + uuid + '" accept="image/!*" style="display:none" onchange="handleFiles(this.files)">' +
+								'<span class="mui-icon iconfont icon-delete delete-btn" id="d' + uuid + '"></span>';
+							father.appendChild(li);
+							var ids = document.getElementById('id' + uuid);
+							father.insertBefore(ids, final);
+
+							document.getElementById('img' + uuid).src = fileReader.result;
+							idcard = fileReader.result;
+							pub();
+						} else {
+							mui.toast('亲、照片只能上传3张！');
+						}
+
+					};
+					fileReader.readAsDataURL(file);
+				}
+			}
+
+			//生成唯一ID
+			function guid() {
+				return Number(Math.random().toString().substr(3, 3) + Date.now()).toString(36);
+			}
+			//保存信息
+			function save() {
+				var len = document.getElementById('father').getElementsByTagName('img').length;
+				var content = document.getElementById("contents").value;
+				for(var i = 0; i < len; i++) {
+					var url = document.getElementById('father').getElementsByTagName('img')[i].src
+					arrayObj["url" + (i + 1)] = url;
+
+				}
+				mui.ajax('访问地址', {
+					data: {
+						content: content,
+						arrayObj: JSON.stringify(arrayObj)
+					},
+					type: 'post',
+					timeout: 10000,
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					success: function(data) {
+						if(data.code == 0) {
+							mui.toast("保存成功");
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						console.log(type);
+					}
+
+				})
+			}
+		</script>
+        {% block js %}
+        <script>
+            $("#button").click(function(){
+                var userid = $("#userid").attr("name")
+                var username = $("#username").val()         // 用户名称
+                var cardid = $("#cardid").val()            // 身份证号码
+                var census= $("#cityResult3").text()         // 户籍所在地
+                var stature = $("#stature").val()           // 身高
+                var weight = $("#weight").val()             // 体重
+                var wechat = $("#wechat").val()             // 微信号
+                var qq = $("#qq").val()                     // QQ
+                var school = $("#school").val()              // 毕业学校
+                var education = $('#education option:selected').val(); // 学历
+                var workunit = $("#workunit").val()          // 工作单位
+                var occupation = $("#occupation").val()      // 职业
+                var profession = $("#profession").val()      // 职业性质
+                var monthly = $("#monthly1").val()+"-"+$("#monthly2").val() // 月薪范围
+                var member = $("#member").val()             // 家庭成员
+                var housing = ""                            // 住房情况
+                if($("#yes1").is(":checked")){
+                    housing = "有"
+                }else {
+                    housing = "无"
+                }
+                var vehicle = ""
+
+                if($("#yes").is(":checked")){
+                    vehicle = "有"
+                }else {
+                    vehicle = "无"
+                }
+
+
+                var rest = $("#rest").val()                 // 其他
+
+                /**
+                 * 择偶要求
+                 * */
+                var marriage =  ""
+                if ($("#wei").is(":checked")){
+                    marriage = "未婚"
+                }else if ($("#liyi").is(":checked")){
+                    marriage = "离异"
+                } else {
+                    marriage = "丧偶"
+                }
+
+                var age = $("#age1").val()+"-"+$("#age2").val()  // 年龄
+                var ze_stature = $("#ze_stature").val()            // 最低身高要求
+                var ze_weight = $("#ze_weight1").val()+"-"+$("#ze_weight2").val()
+                var ze_monthly = $("#ze_monthly1").val()+"-"+$("#ze_monthly2").val()
+                var ze_housing = ""             // 住房要求
+                if($("#yess").is(":checked")){
+                    ze_housing = "有"
+                }else {
+                    ze_housing = "无"
+                }
+                var ze_vehicle = ""         // 车辆要求
+                if($("#yess1").is(":checked")){
+                    ze_vehicle = "有"
+                }else {
+                    ze_vehicle = "无"
+                }
+
+                var ze_children = ""       // 子女要求
+                if ($("#yess3").is(":checked")){
+                    ze_children = "有"
+                }else {
+                    ze_children = "无"
+                }
+                var ze_census = $("#cityResult4").text()    // 地区要求
+                var ze_pests = $("#ze_pests").val()         //  其他要求
+                var phone  = $("#phone").val()              // 电话号码
+                                 // 图片数组
+
+
+                var images_id = new Array(3)
+
+                $('#father li div img').each(function(index) { images_id[index]=this.id });
+
+
+                var images_src1 = $("#"+images_id[0]).attr("src")
+                var images_src2 = $("#"+images_id[1]).attr("src")
+                var images_src3 = $("#"+images_id[2]).attr("src")
+
+
+                $.post('{{ url_for('view.wechat+enroll') }}',
+                    {   userid:userid,
+                        username:username,
+                        census:census,
+                        cardid:cardid,
+                        stature:stature,
+                        weight:weight,
+                        wechat:wechat,
+                        qq:qq,
+                        school:school,
+                        education:education,
+                        workunit:workunit,
+                        occupation: occupation,
+                        profession:profession,
+                        monthly:monthly,
+                        member:member,
+                        housing:housing,
+                        rest:rest,
+                        vehicle:vehicle,
+                        rest:rest,
+                        marriage:marriage,
+                        age:age,
+                        ze_monthly:ze_monthly,
+                        ze_stature:ze_stature,
+                        ze_weight:ze_weight,
+                        ze_housing:ze_housing,
+                        ze_vehicle:ze_vehicle,
+                        ze_census:ze_census,
+                        phone:phone,
+                        ze_pests:ze_pests,
+                        images_src1:images_src1,
+                        images_src2:images_src2,
+                        images_src3:images_src3,
+                        images_id1:images_id[0],
+                        images_id2:images_id[1],
+                        images_id3:images_id[2],
+                        csrfmiddlewaretoken:'{{ csrf_token  }}'
+                    },
+                    function(data){
+						$(".tanc").show();
+						var errors = data['errors'];
+						var status_code = data["status"];
+
+						console.log(errors)
+                        if (status_code==200){
+
+                            $(".tanc_p").html(data['data'])
+                            // alert("数据：" + data['data']['username'] + "\n状态：" + data['status']);
+                        }else if (status_code==300){
+                            $(".tanc_p").html(errors)
+                        }
+
+                    });
+            });
+            $(document).ready(function(){
+				$(".btn_ok , .btn_qx").click(function(){
+					$(".tanc").hide()
+					});
+                });
+            </script>
+    {% endblock %}
+	</body>
+
+</html>
