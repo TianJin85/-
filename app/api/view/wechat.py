@@ -69,20 +69,27 @@ def index(userid=None):
                     userinfo["userid"] = userid
         else:
             return "登录失败"
+    #
+    # data = Message.get_index()          # 查询数据库
+    #
+    # for mess, select in data:
+    #     mess_dic = mess.__dict__
+    #
+    #     delattr(mess, "cardid")
+    #
+    #     setattr(mess, "images", eval(mess_dic["images"])[0])
+    #     setattr(mess, "userinfo", userinfo)
+    #     mess._fields.append("userinfo")
+    # result = jsonify(data)
+    result = []
+    data = Message.get_mess_all()
 
-    data = Message.get_index()          # 查询数据库
-    result =[]
-    for mess, select in data:
-        mess_dic = mess.__dict__
-
-        delattr(mess, "cardid")
-
-        setattr(mess, "images", eval(mess_dic["images"])[0])
+    for mess in data:
+        mess_dict = mess.__dict__
+        setattr(mess, "images", eval(mess_dict["images"])[0])
         setattr(mess, "userinfo", userinfo)
         mess._fields.append("userinfo")
-        mess_dic = mess.__dict__
-        select_dic = select.__dict__
-        result.append([mess_dic, select_dic])
+        result.append(mess.__dict__)
 
     return render_template("index.html", result=result)
 

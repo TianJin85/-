@@ -15,13 +15,6 @@ from app.models.love import Love_message, Love_selection, session
 
 
 class Message(Love_message):
-    from sqlalchemy.orm import sessionmaker
-    from sqlalchemy import create_engine
-
-    engine = create_engine("mysql+cymysql://tianjin:TJ307440205@211.149.250.67:3306/marriage")
-    Session = sessionmaker(bind=engine)
-
-    session = Session()
 
     @classmethod
     def add_message(cls, uid, username, census, cardid, stature, weight, wechat, qq, school, education, workunit,
@@ -172,6 +165,12 @@ class Message(Love_message):
                 age=age,
                 commit=True
             )
+
+    @classmethod
+    def get_mess_all(cls):
+        mess = Love_message.query.all()
+
+        return mess
 
 
 
