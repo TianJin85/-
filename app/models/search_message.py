@@ -76,7 +76,7 @@ class Serch_message(Love_search_message):
                     pass
                 else:
                     searchar = eval(mess.search_qq)
-                    searchar.append(id)
+                    searchar.append({"date": datetime.now().strftime('%Y-%m-%d %H:%M:%S'), "id": id})
                     mess.update(
                         search_qq=str(searchar),
                         commit=True
@@ -93,7 +93,7 @@ class Serch_message(Love_search_message):
         """
         mess = Love_search_message.query.filter_by(uid=uid).first()
 
-        phone_list = [id]
+        phone_list = [{"date": datetime.now().strftime('%Y-%m-%d %H:%M:%S'), "id": id}]
         if mess is None:
             Love_search_message.create(
                 uid=uid,
@@ -111,7 +111,7 @@ class Serch_message(Love_search_message):
                     pass
                 else:
                     searchar = eval(mess.search_phone)
-                    searchar.append(id)
+                    searchar.append({"date": datetime.now().strftime('%Y-%m-%d %H:%M:%S'), "id": id})
                     mess.update(
                         search_qq=str(searchar),
                         commit=True
