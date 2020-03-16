@@ -28,10 +28,15 @@ def search_id():
     uid = request.args["uid"]
     if uid:
         result = Message.get_unenroll(uid=uid)
+<<<<<<< HEAD
         try:
             delattr(result[0], "cardid")  # 删除属性
         except TypeError as e:
             print(e)
+=======
+
+        delattr(result[0], "cardid")  # 删除属性
+>>>>>>> origin/master
 
     return jsonify(result)
 

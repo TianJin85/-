@@ -39,46 +39,13 @@ class Love_user(Base):
     headimgurl = Column('headimgurl', String(200), comment="头像连接")
     vip = Column('vip', String(2), comment="是否是VIP")
 
-    @classmethod
-    def add_user(cls, nickname, openid, unionid, portraits, sex, address, language, subscribe_tiem, province, headimgurl):
-        user = Love_user.query.filter_by(openid=openid).first()
-        print(user)
-        if user is None:
-            Love_user.create(
-                nickname=nickname,
-                Openid=openid,
-                Unionid=unionid,
-                Portraits=portraits,
-                Sex=sex,
-                Address=address,
-                Language=language,
-                Subscribe_tiem=subscribe_tiem,
-                Province=province,
-                Headimgurl=headimgurl,
-                commit=True
-            )
 
-    @classmethod
-    def delete_user(cls,id):
-        user = Love_user.query.filter_by(id=id).first()
-        if user is None:
-            return
-        user.hard_delete(commit=True)
-
-
-    @classmethod
-    def add_openid(cls, openid, headimgurl):
-        user = Love_user.query.filter_by(openid=openid).first()
-        if user is None:
-            Love_user.create(
-                openid=openid,
-                headimgurl=headimgurl,
-                commit=True
-            )
-
-        return user.id
-
-
+class Love_search_message(Base):
+    id = Column("id", Integer, primary_key=True, autoincrement=True, comment="查看id")
+    uid = Column("uid", Integer, ForeignKey("love_user.id"), comment="用户id", unique=True)
+    search_wx = Column("search_wx", String(500), comment="查看过我微信的人")
+    search_qq = Column("search_qq", String(500), comment="查看过我QQ的人")
+    search_phone = Column("search_phone", String(500), comment="查看过我电话号码的人")
 
 
 class Love_message(Base):
@@ -88,93 +55,42 @@ class Love_message(Base):
     uid = Column("uid", Integer, ForeignKey("love_user.id"), comment="用户id", unique=True)
     census = Column("census", String(62),  comment="户籍所在地")
     cardid = Column("cardid", String(28), nullable=False, comment="身份证号码")
+    sex = Column("sex", String(3), comment="性别")
+    age = Column("age", Integer, comment="年龄")
     stature = Column("stature", String(4), comment="身高")
     weight = Column("weight", String(4),  comment="体重")
     phone = Column("phone", String(13), nullable=False, comment="电话号码")
-    wechat = Column("wechat", String(30), nullable=False, comment="微信号")
-    qq = Column("qq", Integer, nullable=False, comment="QQ号")
+    wechat = Column("wechat", String(16), nullable=False, comment="微信号")
+    qq = Column("qq", String(16), nullable=False, comment="QQ号")
     school = Column("school", String(32),  comment="毕业学校")
     images = Column("images", String(200), comment="用户图片")
-    hobby = Column("hobby", String(120), comment="兴趣爱好")
-    blood = Column("blood", String(6), comment="血型")
-    nation = Column("nation", String(12), comment="民族")
     education = Column("education", String(20), comment="学历")
     vehicle = Column("vehicle", String(3), comment="是否有车")
     monthly = Column("monthly", String(30), comment="月薪范围")
     workunit = Column("workunit", String(32), comment="工作单位")
     occupation = Column("occupation", String(32), comment="职业")
-    profession = Column("profession", String(12),comment="职业性质")
+    profession = Column("profession", String(12), comment="职业性质")
     member = Column("member", String(32), comment="家庭成员")
     marriage = Column("marriage", String(20), comment="婚恋情况")
     housing = Column("housing", String(62), comment="住房情况")
-    children = Column("children", String(10), comment="有无子女")
-    personage = Column("presonage", String(500), comment="个人介绍")
     rest = Column("rest", String(500), comment="其他要求")
 
-    @classmethod
-    def add_message(cls, uid, username, census, cardid, stature, weight, wechat, qq, school, education, workunit, occupation,\
-                    profession, monthly, member, housing, rest, vehicle, marriage, phone, images):
-
-        mess = Love_message.query.filter_by(uid=uid).first()
-        if mess is None:
-            Love_message.create(
-                uid=uid,
-                username=username,
-                census=census,
-                cardid=cardid,
-                stature=stature,
-                weight=weight,
-                wechat=wechat,
-                qq=int(qq),
-                school=school,
-                education=education,
-                workunit=workunit,
-                occupation=occupation,
-                profession=profession,
-                monthly=monthly,
-                member=member,
-                housing=housing,
-                rest=rest,
-                vehicle=vehicle,
-                marriage=marriage,
-                phone=int(phone),
-                images=str(images),
-                commit=True
-            )
-        return mess.id
 
 class Love_selection(Base):
 
     __tablename__ = 'love_selection'
     id = Column("id", Integer, primary_key=True, autoincrement=True, comment="择偶id")
     mid = Column("mid", Integer, ForeignKey("love_message.id"), comment="用户信息id", unique=True)
-    marriage = Column("marriage", String(12), nullable=False, comment="婚史情况")
-    age = Column("age", String(30), nullable=False, comment="年龄")
-    stature = Column("stature", String(4), nullable=False, comment="最低身高要求")
-    weight = Column("weight", String(10), nullable=False, comment="体重范围")
-    monthly = Column("monthly", String(30), nullable=False, comment="月薪范围")
-    housing = Column("housing", String(62), nullable=False, comment="住房情况")
-    vehicle = Column("vehicle", String(3), nullable=False, comment="是否有车")
-    children = Column("children", String(10), nullable=False, comment="有无子女")
-    census = Column("census", String(62), nullable=False, comment="户籍所在地")
-    pests = Column("rests", String(500), comment="其他")
-
-    @classmethod
-    def add_selection(cls, mid, marriage, age, stature, weight, monthly, housing, vehicle, children, census, pests):
-        Love_selection.create(
-            mid=mid,
-            marriage=marriage,
-            age=age,
-            stature=stature,
-            weight=weight,
-            monthly=monthly,
-            housing=housing,
-            vehicle=vehicle,
-            children=children,
-            census=census,
-            pests=pests,
-            commit=True
-        )
+    marriage = Column("marriage", String(12),comment="婚史情况")
+    age = Column("age", String(30), comment="年龄")
+    stature = Column("stature", String(4), comment="最低身高要求")
+    weight = Column("weight", String(10), comment="体重范围")
+    monthly = Column("monthly", String(30), comment="月薪范围")
+    housing = Column("housing", String(62), comment="住房情况")
+    vehicle = Column("vehicle", String(3), comment="是否有车")
+    children = Column("children", String(10), comment="有无子女")
+    census = Column("census", String(62), comment="户籍所在地")
+    rests = Column("rests", String(500), comment="其他")
 
 
 class Love_payment(Base):
@@ -195,17 +111,20 @@ class Love_record(Base):
     balance = Column("balance", Float, comment="余额")
     money_Sum = Column("money_sum", Float, comment="充值金额")
 
+
 class Love_ctivity(Base):
 
     __tabelname__ = 'love_ctivity'
     id = Column("id", Integer, primary_key=True, autoincrement=True)
     name = Column("name", String(62), nullable=False, comment="活动名称")
-    adderss = Column("adderss", String(32), nullable=False, comment="活动地址")
+    address = Column("address", String(32), nullable=False, comment="活动地址")
     testarea = Column("testarea", String(20000), nullable=False, comment="活动简介")
     date = Column("date", DateTime, nullable=False, comment="活动时间")
     rule = Column("rule", String(500), comment="活动规则")
     message = Column("message", String(200), comment="其他信息")
+    initiator = Column("initiator", String(10), comment="发起人")
     money = Column("money", Float, comment="活动收费金额")
+    images = Column("images", String(60), comment="活动封面图片")
     num = Column("num", Integer, comment="报名次数")
 
 

@@ -26,4 +26,5 @@ flask-debugtoolbar
 gunicorn
 redis
 uwsgi
-
+aliyun-python-sdk-ecs
+websocket-server

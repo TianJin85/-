@@ -5,6 +5,8 @@
 import json
 import time
 
+from app.api.back import create_back
+from app.api.front import create_front
 from app.api.view import create_view
 from app.libs.lin_flask import LinFlask
 from flask import request, g
@@ -16,9 +18,11 @@ from flask_debugtoolbar import DebugToolbarExtension
 def register_blueprints(app):
     from app.api.v1 import create_v1
     from app.api.cms import create_cms
-    app.register_blueprint(create_v1(), url_prefix='/v1')
+    # app.register_blueprint(create_v1(), url_prefix='/v1')
     app.register_blueprint(create_cms(), url_prefix='/cms')
     app.register_blueprint(create_view(), url_prefix='/view')
+    app.register_blueprint(create_front(), url_prefix="/front")
+    app.register_blueprint(create_back(), url_prefix="/back")
 
 
 
